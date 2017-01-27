@@ -3,6 +3,7 @@ package org.usfirst.frc.team1322.robot.commands;
 import org.usfirst.frc.team1322.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
+
 /**
  *
  */
@@ -24,7 +25,7 @@ public class TeleopDriveSystem extends Command {
     	// @ TODO: When merged into main, add in joysticks
     	Robot.oi.DriverStick.refresh();
     	Robot.DriveSystem.ArcadeDrive(Robot.oi.DriverStick.LeftStick.Y,
-    			Robot.oi.DriverStick.RightStick.X);
+    			                      Robot.oi.DriverStick.RightStick.X);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -14,6 +14,11 @@ public class RobotMap {
 	public static final int CAN_D_FR = 3;
 	public static final int CAN_D_RR = 4;
 	
+	//Servos
+	
+	public static final int upDown = 2;
+	public static final int leftRight = 1;
+	
 	// USB Controllers
 	public static final int USB_Driver = 0;
 	public static final int USB_AUX = 1;
