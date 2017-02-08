@@ -26,7 +26,7 @@ public class DriveSubsystem extends Subsystem {
     	m_CAN_D_FR = new CANTalon(RobotMap.CAN_D_FR);
     	m_CAN_D_RR = new CANTalon(RobotMap.CAN_D_RR);
     	DriveSystem = new RobotDrive(m_CAN_D_FL, m_CAN_D_RL,
-    			m_CAN_D_FR, m_CAN_D_RR);
+    								 m_CAN_D_FR, m_CAN_D_RR);
     	
     	LiveWindow.addActuator("Robot Drive", "Front Left", m_CAN_D_FL);
     	LiveWindow.addActuator("Robot Drive", "Rear Left", m_CAN_D_RL);

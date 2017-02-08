@@ -13,6 +13,7 @@ public class RobotMap {
 	public static final int CAN_D_RL = 2;
 	public static final int CAN_D_FR = 3;
 	public static final int CAN_D_RR = 4;
+	public static final int CAN_WINCH = 5;
 	
 	//Servos
 	
