@@ -13,12 +13,20 @@ public class RobotMap {
 	public static final int CAN_D_RL = 2;
 	public static final int CAN_D_FR = 3;
 	public static final int CAN_D_RR = 4;
-	public static final int CAN_WINCH = 5;
+	public static final int CAN_SHT_L = 5;
+	public static final int CAN_SHT_R = 6;
+	public static final int CAN_BALL_LIFT = 7;
+	public static final int CAN_BALL_AGI = 8;
+	public static final int CAN_BALL_FEED = 9;
+	public static final int CAN_WINCH = 10;
 	
 	//Servos
-	
-	public static final int upDown = 2;
+		//Camera Servos
+	public static final int upDown = 0;
 	public static final int leftRight = 1;
+		//Ball Aim Servos
+	public static final int BALL_AIM_L = 2;
+	public static final int BALL_AIM_R = 3;
 	
 	// USB Controllers
 	public static final int USB_Driver = 0;
