@@ -4,6 +4,7 @@ package org.usfirst.frc.team1322.robot;
 import org.usfirst.frc.team1322.robot.subsystems.CameraSubsystem;
 import org.usfirst.frc.team1322.robot.subsystems.DriveSubsystem;
 import org.usfirst.frc.team1322.robot.subsystems.WinchSubsystem;
+import org.usfirst.frc.team1322.robot.subsystems.ShooterSubsystem;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -17,6 +18,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveSubsystem DriveSystem = new DriveSubsystem();
 	public static final CameraSubsystem CameraSystem = new CameraSubsystem();
 	public static final WinchSubsystem WinchSubsystem = new WinchSubsystem();
+	public static final ShooterSubsystem ShooterSubsystem = new ShooterSubsystem();
 	
 	public static OI oi;
 

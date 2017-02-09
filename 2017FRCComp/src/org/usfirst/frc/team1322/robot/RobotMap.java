@@ -31,6 +31,9 @@ public class RobotMap {
 		//Ball Aim Servos
 	public static final int BALL_AIM_L = 2;
 	public static final int BALL_AIM_R = 3;
+		//Gear Door Servos
+	public static final int GEAR_DOOR_L = 4;
+	public static final int GEAR_DOOR_R = 5;
 	
 	/***USB Controller***/
 	public static final int USB_Driver = 0;
