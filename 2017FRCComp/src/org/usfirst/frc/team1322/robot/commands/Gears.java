@@ -7,20 +7,23 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class Shooter extends Command {
+public class Gears extends Command {
 
-    public Shooter() {
-    	requires(Robot.ShooterSubsystem);
+    public Gears() {
+        requires(Robot.GearSubsystem);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.GearSubsystem.close();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.AuxStick.refresh();
-    	Robot.ShooterSubsystem.run(Robot.oi.AuxStick.LeftStick.Y, Robot.oi.AuxStick.LeftStick.X);
+    	boolean open = Robot.oi.AuxStick.Buttons.RB.changedDown;
+    	boolean close = Robot.oi.AuxStick.Buttons.LB.changedDown;
+    	Robot.GearSubsystem.run(open, close);
     }
 
     // Make this return true when this Command no longer needs to run execute()
