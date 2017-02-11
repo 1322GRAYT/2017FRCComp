@@ -21,6 +21,8 @@ public class Shooter extends Command {
     protected void execute() {
     	Robot.oi.AuxStick.refresh();
     	Robot.ShooterSubsystem.run(Robot.oi.AuxStick.LeftStick.Y, Robot.oi.AuxStick.LeftStick.X);
+    	double run = Robot.oi.AuxStick.Triggers.Combined;
+    	Robot.ShooterSubsystem.ballSystem(run);
     }
 
     // Make this return true when this Command no longer needs to run execute()

@@ -1,8 +1,12 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
+import java.util.concurrent.TimeUnit;
+
 import org.usfirst.frc.team1322.robot.Robot;
 import org.usfirst.frc.team1322.robot.RobotMap;
 import org.usfirst.frc.team1322.robot.commands.Shooter;
+
+import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +17,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ShooterSubsystem extends Subsystem {
 		
 	Servo leftYSev, rightYSev, leftXSev, rightXSev;
+	
+	CANTalon ballAgi, ballLift, ballShtL, ballShtR;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -23,6 +29,11 @@ public class ShooterSubsystem extends Subsystem {
 		leftXSev = new Servo(RobotMap.BALL_X_L);
 		rightXSev = new Servo(RobotMap.BALL_X_R);
 		
+		ballAgi = new CANTalon(RobotMap.CAN_BALL_AGI);
+		ballLift = new CANTalon(RobotMap.CAN_BALL_LIFT);
+		
+		ballShtL = new CANTalon(RobotMap.CAN_SHT_L);
+		ballShtR = new CANTalon(RobotMap.CAN_SHT_R);
 	}
 	
 	public void run(double y, double x){
@@ -108,6 +119,31 @@ public class ShooterSubsystem extends Subsystem {
 		}
 	}
 
+	public void ballSystem(double run){
+		if(run > 0){
+			ballShtL.set(100);
+			ballShtR.set(-100);
+			try {
+				TimeUnit.SECONDS.sleep(1);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			ballAgi.set(75);
+			ballLift.set(100);
+		}else if(run < 0){
+			ballShtL.set(-100);
+			ballShtR.set(100);
+			ballAgi.set(-75);
+			ballLift.set(-100);
+			
+		}else{
+			ballAgi.set(0);
+			ballLift.set(0);
+			ballShtL.set(0);
+			ballShtR.set(0);
+		}
+	}
+	
     public void initDefaultCommand(){
     	setDefaultCommand(new Shooter());
     }

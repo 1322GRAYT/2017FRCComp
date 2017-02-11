@@ -20,9 +20,8 @@ public class RobotMap {
 		//Ball
 	public static final int CAN_BALL_LIFT = 7;
 	public static final int CAN_BALL_AGI = 8;
-	public static final int CAN_BALL_FEED = 9;
 		//Winch
-	public static final int CAN_WINCH = 10;
+	public static final int CAN_WINCH = 9;
 	
 	/*******SERVOs*******/
 		//Camera Servos
