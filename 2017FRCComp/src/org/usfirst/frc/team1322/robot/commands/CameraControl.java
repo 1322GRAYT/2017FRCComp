@@ -26,6 +26,7 @@ public class CameraControl extends Command {
     	boolean down = Robot.oi.AuxStick.DPad.Down;
     	boolean left = Robot.oi.AuxStick.DPad.Left;
     	boolean right = Robot.oi.AuxStick.DPad.Right;
+    	SmartDashboard.putInt("DPad: ", Robot.oi.AuxStick.DPad.degrees);
     	Robot.CameraSystem.run(up, down, left, right);
     }
 

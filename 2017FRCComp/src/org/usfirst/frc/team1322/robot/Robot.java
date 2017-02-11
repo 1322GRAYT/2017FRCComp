@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team1322.robot;
 
-import org.usfirst.frc.team1322.robot.subsystems.CameraSubsystem;
+import org.usfirst.frc.team1322.robot.subsystems.*;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -12,7 +12,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	
+	public static final DriveSubsystem DriveSystem = new DriveSubsystem();
 	public static final CameraSubsystem CameraSystem = new CameraSubsystem();
+	public static final WinchSubsystem WinchSubsystem = new WinchSubsystem();
+	public static final ShooterSubsystem ShooterSubsystem = new ShooterSubsystem();
+	public static final GearSubsystem GearSubsystem = new GearSubsystem();
+	
 	public static OI oi;
 
 	Command autonomousCommand;
