@@ -29,10 +29,10 @@ public class RobotMap {
 	public static final int upDown = 0;
 	public static final int leftRight = 1;
 		//Ball Aim Servos
-	public static final int BALL_Y_L = 2;
-	public static final int BALL_Y_R = 3;
-	public static final int BALL_X_L = 4;
-	public static final int BALL_X_R = 5;
+	public static final int BALL_Y_L = 2; //Left Ball Aimer Y Axis
+	public static final int BALL_Y_R = 3; //Right Ball Aimer Y Axis
+	public static final int BALL_X_L = 4; //Left Ball Aimer X Axis
+	public static final int BALL_X_R = 5; //Right Ball Aimer X Axis
 		//Gear Door Servos
 	public static final int GEAR_DOOR_L = 6;
 	public static final int GEAR_DOOR_R = 7;
