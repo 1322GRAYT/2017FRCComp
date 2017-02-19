@@ -20,11 +20,14 @@ public class WinchSubsystem extends Subsystem {
 	
 	public void run(boolean up, boolean down){
 		if(up){
+			brake(false);
 			CAN_WINCH.set(100);
 		}else if(down){
+			brake(false);
 			CAN_WINCH.set(-100);
 		}else{
 			stop();
+			brake(true);
 		}
 	}
 	

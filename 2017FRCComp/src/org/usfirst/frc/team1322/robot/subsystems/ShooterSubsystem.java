@@ -1,8 +1,12 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
+import java.util.concurrent.TimeUnit;
+
 import org.usfirst.frc.team1322.robot.Robot;
 import org.usfirst.frc.team1322.robot.RobotMap;
 import org.usfirst.frc.team1322.robot.commands.Shooter;
+
+import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -13,6 +17,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ShooterSubsystem extends Subsystem {
 		
 	Servo leftYSev, rightYSev, leftXSev, rightXSev;
+	
+	CANTalon ballAgi, ballLift, ballShtL, ballShtR, ballIT;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -23,91 +29,108 @@ public class ShooterSubsystem extends Subsystem {
 		leftXSev = new Servo(RobotMap.BALL_X_L);
 		rightXSev = new Servo(RobotMap.BALL_X_R);
 		
+		ballAgi = new CANTalon(RobotMap.CAN_BALL_AGI);
+		ballLift = new CANTalon(RobotMap.CAN_BALL_LIFT);
+		
+		ballShtL = new CANTalon(RobotMap.CAN_SHT_L);
+		ballShtR = new CANTalon(RobotMap.CAN_SHT_R);
+		
+		ballIT = new CANTalon(RobotMap.CAN_BALL_IT);
 	}
 	
 	public void run(double y, double x){
-		upDown(y);
-		leftRight(x);
+    	if(y > .2){
+    		up();
+    	}else if(y < -.2){
+    		down();
+    	}
+    	
+    	if(x > .2){
+    		left();
+    	}else if(x < -.2){
+    		right();
+    	}
 	}
 	
-	public void upDown(double y){
-		boolean up = false;
-    	boolean down = false;
-    	if(y > 0){
-    		up = true;
-    		down = false;
-    	}else if(y < 0 ){
-    		up = false;
-    		down = true;
-    	}else{
-    		up = false;
-    		down = false;
-    	}
-		
-		if(up){
-			double lcPos = leftYSev.getPosition();
-			double lnPos = leftYSev.getPosition();
-			double rcPos = rightYSev.getPosition();
-			double rnPos = rightYSev.getPosition();
-			if(lcPos < 1){
-				lnPos = lcPos + .01;
-				rnPos = rcPos + .01;
-			}		
-			leftYSev.setPosition(lnPos);
-			rightYSev.setPosition(rnPos);	
-		}else if(down){
-			double lcPos = leftYSev.getPosition();
-			double lnPos = leftYSev.getPosition();
-			double rcPos = rightYSev.getPosition();
-			double rnPos = rightYSev.getPosition();
-			if(lcPos > -1){
-				lnPos = lcPos - .01;
-				rnPos = rcPos - .01;
-			}		
-			leftYSev.setPosition(lnPos);
-			rightYSev.setPosition(rnPos);	
-		}
+	public void up(){
+		double lPos = leftYSev.getPosition();
+		double rPos = rightYSev.getPosition();
+		lPos = lPos + .1;
+		rPos = rPos - .1;
+		leftYSev.setPosition(lPos);
+		rightYSev.setPosition(rPos);
+		leftYSev.setDisabled();
+		rightYSev.setDisabled();
 	}
 	
-	public void leftRight(double x){
-		boolean up = false;
-    	boolean down = false;
-    	if(x > 0){
-    		up = true;
-    		down = false;
-    	}else if(x < 0 ){
-    		up = false;
-    		down = true;
-    	}else{
-    		up = false;
-    		down = false;
-    	}
-		
-		if(up){
-			double lcPos = leftXSev.getPosition();
-			double lnPos = leftXSev.getPosition();
-			double rcPos = rightXSev.getPosition();
-			double rnPos = rightXSev.getPosition();
-			if(lcPos < 1){
-				lnPos = lcPos + .01;
-				rnPos = rcPos + .01;
-			}		
-			leftXSev.setPosition(lnPos);
-			rightXSev.setPosition(rnPos);	
-		}else if(down){
-			double lcPos = leftXSev.getPosition();
-			double lnPos = leftXSev.getPosition();
-			double rcPos = rightXSev.getPosition();
-			double rnPos = rightXSev.getPosition();
-			if(lcPos > -1){
-				lnPos = lcPos - .01;
-				rnPos = rcPos - .01;
-			}		
-			leftXSev.setPosition(lnPos);
-			rightXSev.setPosition(rnPos);	
-		}
+	public void down(){
+		double lPos = leftYSev.getPosition();
+		double rPos = rightYSev.getPosition();
+		lPos = lPos - .01;
+		rPos = rPos + .01;		
+		leftYSev.setPosition(lPos);
+		rightYSev.setPosition(rPos);
+		leftYSev.setDisabled();
+		rightYSev.setDisabled();
+	}
+	
+	public void left(){
+		double lPos = leftXSev.getPosition();
+		double rPos = rightXSev.getPosition();
+		lPos = lPos - .1;
+		rPos = rPos + .1;		
+		leftXSev.setPosition(lPos);
+		rightXSev.setPosition(rPos);
+		leftXSev.setDisabled();
+		rightXSev.setDisabled();
+	}
+	
+	public void right(){
+		double lPos = leftXSev.getPosition();
+		double rPos = rightXSev.getPosition();
+		lPos = lPos + .1;
+		rPos = rPos - .1;
+		leftXSev.setPosition(lPos);
+		rightXSev.setPosition(rPos);
+		leftXSev.setDisabled();
+		rightXSev.setDisabled();
 	}
 
+	public void ballSystem(double run){
+		if(run > 0){
+			ballShtL.set(-.75);
+			ballShtR.set(.75);
+			try {
+				TimeUnit.MILLISECONDS.sleep(250);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			ballAgi.set(-.5);
+			ballLift.set(100);
+		}else if(run < 0){
+			ballShtL.set(.75);
+			ballShtR.set(-.75);
+			ballAgi.set(.5);
+			ballLift.set(-100);
+			
+		}else{
+			ballAgi.set(0);
+			ballLift.set(0);
+			ballShtL.set(0);
+			ballShtR.set(0);
+		}
+	}
+	
+	public void ballIntake(boolean in, boolean out){
+		if(in){
+			ballIT.set(-100);
+		}else if(out){
+			ballIT.set(100);
+		}else{
+			ballIT.set(0);
+		}
+	}
+	
     public void initDefaultCommand(){
     	setDefaultCommand(new Shooter());
     }

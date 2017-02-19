@@ -28,6 +28,7 @@ public class CameraSubsystem extends Subsystem {
 			nPos = cPos + .01;
 		}		
 		upDown.setPosition(nPos);	
+		
 	}
 
 	public void down(){

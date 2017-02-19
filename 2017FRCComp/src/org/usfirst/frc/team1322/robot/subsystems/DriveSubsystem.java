@@ -6,6 +6,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 /**
@@ -14,6 +15,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 public class DriveSubsystem extends Subsystem {
     private RobotDrive DriveSystem;
     private CANTalon m_CAN_D_FL, m_CAN_D_RL, m_CAN_D_FR, m_CAN_D_RR;
+    private Servo shifterL, shifterR;
     private int encoderValue;
     private int setPosition;
     private boolean autonActivated;
@@ -21,12 +23,15 @@ public class DriveSubsystem extends Subsystem {
     
     
     public DriveSubsystem(){
+    	shifterL = new Servo(RobotMap.SHIFTER_L);
+    	shifterR = new Servo(RobotMap.SHIFTER_R);
     	m_CAN_D_FL = new CANTalon(RobotMap.CAN_D_FL);
     	m_CAN_D_RL = new CANTalon(RobotMap.CAN_D_RL);
     	m_CAN_D_FR = new CANTalon(RobotMap.CAN_D_FR);
     	m_CAN_D_RR = new CANTalon(RobotMap.CAN_D_RR);
     	DriveSystem = new RobotDrive(m_CAN_D_FL, m_CAN_D_RL,
     								 m_CAN_D_FR, m_CAN_D_RR);
+    	
     	
     	LiveWindow.addActuator("Robot Drive", "Front Left", m_CAN_D_FL);
     	LiveWindow.addActuator("Robot Drive", "Rear Left", m_CAN_D_RL);
@@ -44,6 +49,10 @@ public class DriveSubsystem extends Subsystem {
 		ArcadeDrive(0, 0);
 	}
     
+	public void Shift(boolean high, boolean low){
+		
+	}
+	
     private void updateEncoder() {
     	encoderValue = m_CAN_D_FL.getEncPosition();
     }

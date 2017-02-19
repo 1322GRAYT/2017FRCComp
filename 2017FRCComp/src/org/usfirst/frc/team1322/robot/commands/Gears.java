@@ -21,8 +21,8 @@ public class Gears extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.AuxStick.refresh();
-    	boolean open = Robot.oi.AuxStick.Buttons.RB.changedDown;
-    	boolean close = Robot.oi.AuxStick.Buttons.LB.changedDown;
+    	boolean open = Robot.oi.AuxStick.Buttons.RB.current;
+    	boolean close = Robot.oi.AuxStick.Buttons.LB.current;
     	Robot.GearSubsystem.run(open, close);
     }
 

@@ -22,8 +22,8 @@ public class Winch extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.AuxStick.refresh();
-    	boolean up = Robot.oi.AuxStick.Buttons.Y.changedDown;
-    	boolean down = Robot.oi.AuxStick.Buttons.A.changedDown;
+    	boolean up = Robot.oi.AuxStick.Buttons.Y.current;
+    	boolean down = Robot.oi.AuxStick.Buttons.A.current;
     	Robot.WinchSubsystem.run(up, down);
     	
     }

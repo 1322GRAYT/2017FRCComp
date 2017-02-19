@@ -5,6 +5,7 @@ import org.usfirst.frc.team1322.robot.commands.Gears;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -17,7 +18,17 @@ public class GearSubsystem extends Subsystem {
     public GearSubsystem(){
     	GrDrR = new Servo(RobotMap.GEAR_DOOR_R);
     	GrDrL = new Servo(RobotMap.GEAR_DOOR_L);
-    	
+    	//SmartDashboard.putDouble("R Door Angle", GrDrR.get());
+    	//SmartDashboard.putDouble("R2 Door Angle", GrDrR.getAngle());
+    	//SmartDashboard.putBoolean("Help", true);
+    }
+    
+    public double rSevAngle(){
+    	return GrDrR.getAngle();
+    }
+    
+    public double lSevAngle(){
+    	return GrDrL.getAngle();
     }
     
     public void open(){

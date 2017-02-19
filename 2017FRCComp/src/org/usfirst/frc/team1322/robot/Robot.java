@@ -9,6 +9,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
+import edu.wpi.cscore.VideoMode.PixelFormat;
 
 public class Robot extends IterativeRobot {
 	
@@ -26,8 +31,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		CameraServer cams = CameraServer.getInstance();
-		cams.startAutomaticCapture(0).setResolution(640, 480);
+		CameraServer cam1 = CameraServer.getInstance();
+		cam1.startAutomaticCapture(1).setResolution(640, 480); 
+		
+		UsbCamera gearCam = new UsbCamera("cam0", 0);
+		//gearCam.setResolution(640, 480);
+		MjpegServer gearServer = new MjpegServer("Gear Cam 0", 1183);
+		gearServer.setSource(gearCam); 	
 	}
 
 	@Override
