@@ -18,7 +18,7 @@ public class ShooterSubsystem extends Subsystem {
 		
 	Servo leftYSev, rightYSev, leftXSev, rightXSev;
 	
-	CANTalon ballAgi, ballLift, ballShtL, ballShtR, ballIT;
+	CANTalon ballAgi, ballAgi2, ballLift, ballShtL, ballShtR, ballIT;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
@@ -36,6 +36,7 @@ public class ShooterSubsystem extends Subsystem {
 		ballShtR = new CANTalon(RobotMap.CAN_SHT_R);
 		
 		ballIT = new CANTalon(RobotMap.CAN_BALL_IT);
+		ballAgi2 = new CANTalon(RobotMap.CAN_BALL_AGI2);
 	}
 	
 	public void run(double y, double x){
@@ -107,17 +108,20 @@ public class ShooterSubsystem extends Subsystem {
 			}
 			ballAgi.set(-.5);
 			ballLift.set(100);
+			ballAgi2.set(-100);
 		}else if(run < 0){
 			ballShtL.set(.75);
 			ballShtR.set(-.75);
 			ballAgi.set(.5);
 			ballLift.set(-100);
+			ballAgi2.set(100);
 			
 		}else{
 			ballAgi.set(0);
 			ballLift.set(0);
 			ballShtL.set(0);
 			ballShtR.set(0);
+			ballAgi2.set(0);
 		}
 	}
 	

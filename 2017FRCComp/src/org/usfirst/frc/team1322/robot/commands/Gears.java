@@ -3,6 +3,7 @@ package org.usfirst.frc.team1322.robot.commands;
 import org.usfirst.frc.team1322.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -15,7 +16,8 @@ public class Gears extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.GearSubsystem.close();
+    	//Robot.GearSubsystem.close();
+    	SmartDashboard.putDouble("Left Door ANgle", 0.0);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -24,6 +26,7 @@ public class Gears extends Command {
     	boolean open = Robot.oi.AuxStick.Buttons.RB.current;
     	boolean close = Robot.oi.AuxStick.Buttons.LB.current;
     	Robot.GearSubsystem.run(open, close);
+    	//Robot.GearSubsystem.setup(180);
     }
 
     // Make this return true when this Command no longer needs to run execute()

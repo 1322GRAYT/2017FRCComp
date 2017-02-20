@@ -30,7 +30,6 @@ public class Shooter extends Command {
     	boolean in = Robot.oi.AuxStick.DPad.Up;
     	boolean out = Robot.oi.AuxStick.DPad.Down;
     	Robot.ShooterSubsystem.ballIntake(in, out);
-    	SmartDashboard.putDouble("RServoAngle", Robot.GearSubsystem.lSevAngle());
     }
 
     // Make this return true when this Command no longer needs to run execute()

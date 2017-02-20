@@ -21,6 +21,7 @@ public class RobotMap {
 	public static final int CAN_BALL_LIFT = 7; //11 On Robot
 	public static final int CAN_BALL_AGI = 8; //13 On Robot
 	public static final int CAN_BALL_IT = 10; // On Robot
+	public static final int CAN_BALL_AGI2 = 11; // On Robot
 		//Winch
 	public static final int CAN_WINCH = 9; //2 On Robot
 		
