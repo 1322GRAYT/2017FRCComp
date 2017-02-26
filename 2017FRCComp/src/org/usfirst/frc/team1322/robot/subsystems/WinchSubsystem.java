@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.Winch;
+import org.usfirst.frc.team1322.robot.commands.TC_Winch;
 
 import com.ctre.CANTalon;
 
@@ -40,7 +40,7 @@ public class WinchSubsystem extends Subsystem {
     }
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new Winch());
+        setDefaultCommand(new TC_Winch());
     }
 }
 

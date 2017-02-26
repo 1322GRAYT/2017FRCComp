@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.Gears;
+import org.usfirst.frc.team1322.robot.commands.TC_Gears;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -26,12 +26,12 @@ public class GearSubsystem extends Subsystem {
     
     public void open(){
 		GrDrR.setAngle(0);
-		GrDrL.setAngle(180);
+		GrDrL.setAngle(0);
     }
 
     public void close(){
-		GrDrR.setAngle(125);
-		GrDrL.setAngle(93);
+		GrDrR.setAngle(180);
+		GrDrL.setAngle(180);
     }
     
     public void run(boolean open, boolean close){
@@ -43,7 +43,7 @@ public class GearSubsystem extends Subsystem {
     	}
     }
     public void initDefaultCommand() {
-    	setDefaultCommand(new Gears());
+    	setDefaultCommand(new TC_Gears());
     	
     }
 }

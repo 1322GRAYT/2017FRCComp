@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.usfirst.frc.team1322.robot.Robot;
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.Shooter;
+import org.usfirst.frc.team1322.robot.commands.TC_Shooter;
 
 import com.ctre.CANTalon;
 
@@ -96,23 +96,35 @@ public class ShooterSubsystem extends Subsystem {
 		leftXSev.setDisabled();
 		rightXSev.setDisabled();
 	}
+	
+	public double currentPower = .75;
+			
+	public void powerChanger(boolean up, boolean down){
+		if(up){
+			currentPower = currentPower + .1;
+		}else if(down){
+			currentPower = currentPower - .1;
+		}
+	}
 
 	public void ballSystem(double run){
+				
 		if(run > 0){
-			ballShtL.set(-.75);
-			ballShtR.set(.75);
+			ballShtL.set(-currentPower);
+			ballShtR.set(currentPower);
+			
 			try {
 				TimeUnit.MILLISECONDS.sleep(250);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			ballAgi.set(-.5);
+			ballAgi.set(1);
 			ballLift.set(100);
 			ballAgi2.set(-100);
 		}else if(run < 0){
 			ballShtL.set(.75);
 			ballShtR.set(-.75);
-			ballAgi.set(.5);
+			ballAgi.set(-.5);
 			ballLift.set(-100);
 			ballAgi2.set(100);
 			
@@ -136,7 +148,7 @@ public class ShooterSubsystem extends Subsystem {
 	}
 	
     public void initDefaultCommand(){
-    	setDefaultCommand(new Shooter());
+    	setDefaultCommand(new TC_Shooter());
     }
 }
 

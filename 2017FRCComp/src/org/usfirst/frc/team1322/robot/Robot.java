@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team1322.robot;
 
+import org.usfirst.frc.team1322.robot.commands.AM_DriveForwardGear;
 import org.usfirst.frc.team1322.robot.subsystems.*;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -28,9 +29,15 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
+	
 	@Override
 	public void robotInit() {
 		oi = new OI();
+		
+		chooser.addDefault("Drive Forward Auton", new AM_DriveForwardGear());
+		SmartDashboard.putData("Auto mode", chooser);
+		
+		
 		CameraServer cam1 = CameraServer.getInstance();
 		cam1.startAutomaticCapture(1).setResolution(640, 480); 
 		
@@ -54,13 +61,6 @@ public class Robot extends IterativeRobot {
 	public void autonomousInit() {
 		autonomousCommand = chooser.getSelected();
 
-		/*
-		 * String autoSelected = SmartDashboard.getString("Auto Selector",
-		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-		 * = new MyAutoCommand(); break; case "Default Auto": default:
-		 * autonomousCommand = new ExampleCommand(); break; }
-		 */
-
 		// schedule the autonomous command (example)
 		if (autonomousCommand != null)
 			autonomousCommand.start();
@@ -73,10 +73,6 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void teleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
 		if (autonomousCommand != null)
 			autonomousCommand.cancel();
 	}

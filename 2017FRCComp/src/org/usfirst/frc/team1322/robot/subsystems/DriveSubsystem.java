@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.TeleopDriveSystem;
+import org.usfirst.frc.team1322.robot.commands.TC_DriveSystem;
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
 
@@ -99,7 +99,7 @@ public class DriveSubsystem extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(new TeleopDriveSystem());
+        setDefaultCommand(new TC_DriveSystem());
     }
 
 	public void setPosition(double driveToPosition) {

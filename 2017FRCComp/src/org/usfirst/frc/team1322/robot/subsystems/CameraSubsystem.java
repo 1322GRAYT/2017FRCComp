@@ -1,7 +1,7 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.CameraControl;
+import org.usfirst.frc.team1322.robot.commands.TC_CameraControl;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -81,7 +81,7 @@ public class CameraSubsystem extends Subsystem {
 
     public void initDefaultCommand() {
         //set the default command for a subsystem here.
-        setDefaultCommand(new CameraControl());
+        setDefaultCommand(new TC_CameraControl());
     }
 }
 

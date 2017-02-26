@@ -1,6 +1,6 @@
 package org.usfirst.frc.team1322.robot;
 
-import org.usfirst.frc.team1322.robot.commands.CameraControl;
+import org.usfirst.frc.team1322.robot.commands.TC_CameraControl;
 
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
