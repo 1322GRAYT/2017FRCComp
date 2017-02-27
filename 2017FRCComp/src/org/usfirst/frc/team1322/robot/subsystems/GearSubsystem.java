@@ -26,12 +26,12 @@ public class GearSubsystem extends Subsystem {
     
     public void open(){
 		GrDrR.setAngle(0);
-		GrDrL.setAngle(0);
+		GrDrL.setAngle(180);
     }
 
     public void close(){
 		GrDrR.setAngle(180);
-		GrDrL.setAngle(180);
+		GrDrL.setAngle(0);
     }
     
     public void run(boolean open, boolean close){

@@ -19,7 +19,7 @@ public class DriveSubsystem extends Subsystem {
     private int encoderValue;
     private int setPosition;
     private boolean autonActivated;
-    private final static double scaleFactor = 1.0;
+    private final static double scaleFactor = 8500.0;
     
     
     public DriveSubsystem(){
@@ -54,11 +54,12 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
     private void updateEncoder() {
-    	encoderValue = m_CAN_D_FL.getEncPosition();
+    	encoderValue = m_CAN_D_RR.getEncPosition();
     }
     
     public int getEncoderPosition() {
-    	updateEncoder();
+    	encoderValue = m_CAN_D_RR.getEncPosition();
+    	
     	return encoderValue;
     }
 
@@ -68,33 +69,21 @@ public class DriveSubsystem extends Subsystem {
     }
     
     public void setPID(double Kp, double Ki, double Kd){
-    	m_CAN_D_FL.setPID(Kp, Ki, Kd);
+    	m_CAN_D_RR.setPID(Kp, Ki, Kd);
     }
     
     public void setAutonMode(){
     	setSafety(false);
-    	m_CAN_D_FL.setControlMode(TalonControlMode.Position.value);
-    	m_CAN_D_FL.set(0);
-    	m_CAN_D_RL.setControlMode(TalonControlMode.Follower.value);
-    	m_CAN_D_RL.set(m_CAN_D_FL.getDeviceID());
-    	m_CAN_D_FR.setControlMode(TalonControlMode.Follower.value);
-    	m_CAN_D_FR.set(m_CAN_D_FL.getDeviceID());
-    	m_CAN_D_RR.setControlMode(TalonControlMode.Follower.value);
-    	m_CAN_D_RR.set(m_CAN_D_FL.getDeviceID());
     }
     
     public void deactivateAutonMode(){
-    	m_CAN_D_FL.setControlMode(TalonControlMode.Voltage.value);
-    	m_CAN_D_FR.setControlMode(TalonControlMode.Voltage.value);
-    	m_CAN_D_RL.setControlMode(TalonControlMode.Voltage.value);
-    	m_CAN_D_RR.setControlMode(TalonControlMode.Voltage.value);
     	setSafety(true);
     	Stop();
     }
     
     public void resetEncoder() {
     	encoderValue = 0;
-    	m_CAN_D_FL.setEncPosition(0);
+    	m_CAN_D_RR.setEncPosition(0);
     }
 
     public void initDefaultCommand() {
@@ -104,13 +93,14 @@ public class DriveSubsystem extends Subsystem {
 
 	public void setPosition(double driveToPosition) {
 		// TODO Auto-generated method stub
-		setPosition = (int)(driveToPosition / scaleFactor);
-		if (autonActivated) m_CAN_D_FL.set(setPosition);
+		if (autonActivated){
+			ArcadeDrive(.75, 0);
+		}
 		
 	}
 
 	public int getError() {
-		return (int)m_CAN_D_FL.getError();
+		return (int)m_CAN_D_RR.getError();
 	}
 
 }

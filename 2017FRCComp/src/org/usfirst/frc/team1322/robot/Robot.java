@@ -2,6 +2,7 @@
 package org.usfirst.frc.team1322.robot;
 
 import org.usfirst.frc.team1322.robot.commands.AM_DriveForwardGear;
+import org.usfirst.frc.team1322.robot.commands.AM_ShooterAuton;
 import org.usfirst.frc.team1322.robot.subsystems.*;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 		oi = new OI();
 		
 		chooser.addDefault("Drive Forward Auton", new AM_DriveForwardGear());
+		chooser.addDefault("Just Shoot", new AM_ShooterAuton());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		

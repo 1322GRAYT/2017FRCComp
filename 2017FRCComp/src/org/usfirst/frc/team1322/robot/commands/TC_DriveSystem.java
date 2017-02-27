@@ -2,6 +2,7 @@ package org.usfirst.frc.team1322.robot.commands;
 
 import org.usfirst.frc.team1322.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -18,6 +19,8 @@ public class TC_DriveSystem extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.DriveSystem.Stop();
+    	Robot.DriveSystem.resetEncoder();
+    	
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -26,6 +29,7 @@ public class TC_DriveSystem extends Command {
     	Robot.oi.DriverStick.refresh();
     	Robot.DriveSystem.ArcadeDrive(Robot.oi.DriverStick.LeftStick.Y,
     			                      Robot.oi.DriverStick.RightStick.X);
+    	SmartDashboard.putInt("Encoder Value", Robot.DriveSystem.getEncoderPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()

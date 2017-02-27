@@ -16,7 +16,7 @@ public class TC_Gears extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.GearSubsystem.close();
+    	//Robot.GearSubsystem.close();
     }
 
     // Called repeatedly when this Command is scheduled to run

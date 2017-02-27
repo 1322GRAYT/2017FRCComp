@@ -11,12 +11,18 @@ import edu.wpi.first.wpilibj.command.Command;
 public class AC_GearsAuton extends Command {
 	
 	boolean toggle = false;
+	boolean finished = false;
+	Timer Clock;
 	
     public AC_GearsAuton(boolean open) {
+    	Clock = new Timer();
+    	Clock.reset();
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.GearSubsystem);
     	toggle = open;
+    	Clock.start();
+    	
     	
     }
 
@@ -37,7 +43,7 @@ public class AC_GearsAuton extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return false;
+    	return Clock.get() > 3;
     }
 
     // Called once after isFinished returns true
