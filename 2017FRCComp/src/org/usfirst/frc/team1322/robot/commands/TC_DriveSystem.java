@@ -25,11 +25,11 @@ public class TC_DriveSystem extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	// @ TODO: When merged into main, add in joysticks
     	Robot.oi.DriverStick.refresh();
     	Robot.DriveSystem.ArcadeDrive(Robot.oi.DriverStick.LeftStick.Y,
     			                      Robot.oi.DriverStick.RightStick.X);
-    	SmartDashboard.putInt("Encoder Value", Robot.DriveSystem.getEncoderPosition());
+    	//TODO: Remove SmartDashboard Reference
+    	SmartDashboard.putNumber("Encoder Value", Robot.DriveSystem.getEncoderPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()

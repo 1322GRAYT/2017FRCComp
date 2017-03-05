@@ -21,21 +21,12 @@ public class TC_Shooter extends Command {
 
 	protected void execute() {
     	Robot.oi.AuxStick.refresh();
-    	
-    	
-    	Robot.ShooterSubsystem.run(Robot.oi.AuxStick.LeftStick.Y, Robot.oi.AuxStick.LeftStick.X);
     	double run = Robot.oi.AuxStick.Triggers.Combined;
     	Robot.ShooterSubsystem.ballSystem(run);
     	
     	boolean in = Robot.oi.AuxStick.DPad.Up;
     	boolean out = Robot.oi.AuxStick.DPad.Down;
     	Robot.ShooterSubsystem.ballIntake(in, out);
-    	
-    	boolean up = Robot.oi.AuxStick.Buttons.B.current;
-    	boolean down = Robot.oi.AuxStick.Buttons.X.current;
-    	Robot.ShooterSubsystem.powerChanger(up, down);
-    	
-    	SmartDashboard.putDouble("Current Power:", Robot.ShooterSubsystem.currentPower);
     }
 
     // Make this return true when this Command no longer needs to run execute()

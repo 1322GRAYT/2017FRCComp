@@ -13,15 +13,23 @@ public class AC_DriveToPosition extends Command {
 	double DriveToPosition;
 	boolean ResetPosition;
 	double forwardPwr;
-	double turnPower;
+	double turnPwr;
 	
+	/****************************
+	 * Constructor
+	 * 
+	 * @param driveToPosition In feet, type distance to travel
+	 * @param resetPosition Reset encoder
+	 * @param forwardPower How fast to travel forward
+	 * @param turnPower How fast to turn
+	 */
     public AC_DriveToPosition(double driveToPosition, boolean resetPosition, 
-    							double speed, double turnpower) {
+    							double forwardPower, double turnPower) {
     	requires(Robot.DriveSystem);
     	DriveToPosition = driveToPosition;
     	ResetPosition = resetPosition;
-    	forwardPwr = speed;
-    	turnPower = turnpower;
+    	forwardPwr = forwardPower;
+    	turnPwr = turnPower;
     			
     }
 
@@ -32,18 +40,18 @@ public class AC_DriveToPosition extends Command {
     	}
     	//Robot.DriveSystem.setPID(1, 0, 0);
     	Robot.DriveSystem.setAutonMode();
-    	Robot.DriveSystem.ArcadeDrive(forwardPwr, turnPower);
+    	Robot.DriveSystem.ArcadeDrive(forwardPwr, turnPwr);
     	
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	SmartDashboard.putInt("Encoder Value", Robot.DriveSystem.getEncoderPosition());
+    	//TODO Remove SmartDashboard Reference
+    	SmartDashboard.putNumber("Encoder Value", Robot.DriveSystem.getEncoderPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        //return (Robot.DriveSystem.getError() < 30);
     	return (Math.abs(Robot.DriveSystem.getEncoderPosition()) >= (DriveToPosition * 5800));
     }
 

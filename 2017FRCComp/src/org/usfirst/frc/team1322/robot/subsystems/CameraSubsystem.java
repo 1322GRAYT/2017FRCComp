@@ -17,7 +17,7 @@ public class CameraSubsystem extends Subsystem {
     // here. Call these from Commands.
 	
 	public CameraSubsystem(){
-		upDown = new Servo(RobotMap.upDown);
+		//upDown = new Servo(RobotMap.upDown);
 		leftRight = new Servo(RobotMap.leftRight);
 	}
 	

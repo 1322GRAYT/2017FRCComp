@@ -27,11 +27,13 @@ public class GearSubsystem extends Subsystem {
     public void open(){
 		GrDrR.setAngle(0);
 		GrDrL.setAngle(180);
+		SmartDashboard.putBoolean("GearDoor", true);
     }
 
     public void close(){
 		GrDrR.setAngle(180);
 		GrDrL.setAngle(0);
+		SmartDashboard.putBoolean("GearDoor", false);
     }
     
     public void run(boolean open, boolean close){

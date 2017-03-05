@@ -12,12 +12,12 @@ public class AC_Wait extends Command {
     public AC_Wait(double waitTime) {
     	wait = new Timer();
     	time = waitTime;
-    	wait.reset();
-    	wait.start();
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	wait.reset();
+    	wait.start();
     }
 
     // Called repeatedly when this Command is scheduled to run

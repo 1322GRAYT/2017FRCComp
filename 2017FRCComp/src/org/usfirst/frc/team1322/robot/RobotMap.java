@@ -16,18 +16,18 @@ public class RobotMap {
 	public static final int CAN_D_RR = 4; //0 On Robot
 		//Shooter
 	public static final int CAN_SHT_L = 5; //9 On Robot
-	public static final int CAN_SHT_R = 6; //10 On Robot
+	public static final int CAN_SHT = 6; //10 On Robot
 		//Ball
-	public static final int CAN_BALL_LIFT = 7; //11 On Robot
+	public static final int CAN_BALL_AGI2 = 7; //11 On Robot
 	public static final int CAN_BALL_AGI = 8; //13 On Robot
 	public static final int CAN_BALL_IT = 10; // On Robot
-	public static final int CAN_BALL_AGI2 = 11; // On Robot
+	//public static final int CAN_BALL_AGI2 = 11; // On Robot
 		//Winch
 	public static final int CAN_WINCH = 9; //2 On Robot
 		
 	/*******SERVOs*******/
 		//Camera Servos
-	public static final int upDown = 0; //Not Used
+	public static final int ballBlocker = 0; //Shooter Ball Blocker
 	public static final int leftRight = 1; //Not Used
 		//Ball Aim Servos
 	public static final int BALL_Y_L = 2; //Left Ball Aimer Y Axis
