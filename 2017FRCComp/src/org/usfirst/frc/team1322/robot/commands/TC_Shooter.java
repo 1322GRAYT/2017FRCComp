@@ -21,12 +21,18 @@ public class TC_Shooter extends Command {
 
 	protected void execute() {
     	Robot.oi.AuxStick.refresh();
-    	double run = Robot.oi.AuxStick.Triggers.Combined;
-    	Robot.ShooterSubsystem.ballSystem(run);
+    	if(Robot.oi.AuxStick.Triggers.Combined > 0.5){
+    		Robot.ShooterSubsystem.ShootBalls();
+    	}
+    	else if (Robot.oi.AuxStick.Triggers.Combined > -0.5){
+    		Robot.ShooterSubsystem.BackFeed();
+    	}
+    	else{
+    		Robot.ShooterSubsystem.StopShooter();
+    	}
     	
-    	boolean in = Robot.oi.AuxStick.DPad.Up;
-    	boolean out = Robot.oi.AuxStick.DPad.Down;
-    	Robot.ShooterSubsystem.ballIntake(in, out);
+    	Robot.ShooterSubsystem.ballIntake(Robot.oi.AuxStick.DPad.Up,
+    			Robot.oi.AuxStick.DPad.Down);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,10 +42,14 @@ public class TC_Shooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
+    	//TODO: Add end statements to all the commands
+    	Robot.ShooterSubsystem.StopShooter();
+    	Robot.ShooterSubsystem.ballIntake(false, false);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

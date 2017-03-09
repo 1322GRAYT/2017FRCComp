@@ -1,7 +1,11 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
-import org.usfirst.frc.team1322.robot.utils.BNO055;
+import java.util.TimerTask;
 
+import org.usfirst.frc.team1322.robot.BNO055;
+
+import edu.wpi.first.wpilibj.I2C;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**

@@ -3,9 +3,6 @@ package org.usfirst.frc.team1322.robot.subsystems;
 import org.usfirst.frc.team1322.robot.RobotMap;
 import org.usfirst.frc.team1322.robot.commands.TC_DriveSystem;
 import com.ctre.CANTalon;
-import org.usfirst.frc.team1322.robot.utils.BNO055;
-import org.usfirst.frc.team1322.robot.utils.BNO055.CalData;
-import org.usfirst.frc.team1322.robot.utils.BNO055.reg_t;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -47,7 +44,8 @@ public class DriveSubsystem extends Subsystem {
 		
 	}
 	
-    private void updateEncoder() {
+    @SuppressWarnings("unused")
+	private void updateEncoder() {
     	encoderValue = m_CAN_D_RR.getEncPosition();
     }
     

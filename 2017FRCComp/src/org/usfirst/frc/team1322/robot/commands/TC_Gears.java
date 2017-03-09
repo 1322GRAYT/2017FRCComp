@@ -1,9 +1,7 @@
 package org.usfirst.frc.team1322.robot.commands;
 
 import org.usfirst.frc.team1322.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -22,9 +20,10 @@ public class TC_Gears extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.oi.AuxStick.refresh();
-    	boolean open = Robot.oi.AuxStick.Buttons.RB.current;
-    	boolean close = Robot.oi.AuxStick.Buttons.LB.current;
-    	Robot.GearSubsystem.run(open, close);
+    	if (Robot.oi.AuxStick.Buttons.RB.current) 
+    		Robot.GearSubsystem.open();
+    	else if (Robot.oi.AuxStick.Buttons.LB.current)
+    		Robot.GearSubsystem.close();
     }
     
     public void open(){

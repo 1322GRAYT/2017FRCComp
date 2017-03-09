@@ -9,7 +9,6 @@ import org.usfirst.frc.team1322.robot.commands.AM_DriveToWhite;
 import org.usfirst.frc.team1322.robot.commands.AM_RedShoot;
 import org.usfirst.frc.team1322.robot.commands.AM_ShooterAuton;
 import org.usfirst.frc.team1322.robot.subsystems.*;
-import org.usfirst.frc.team1322.robot.utils.BNO055;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;

@@ -22,7 +22,7 @@ public class AC_Shooter extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	ShootClock.reset();
-    	Robot.ShooterSubsystem.ballSystem(.5);
+    	Robot.ShooterSubsystem.ShootBalls();
     	ShootClock.start();
     	
     }
@@ -38,11 +38,12 @@ public class AC_Shooter extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	Robot.ShooterSubsystem.ballSystem(0);
+    	Robot.ShooterSubsystem.StopShooter();
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

@@ -7,23 +7,16 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/**
- *
- */
+enum DoorPosition {Open, Close};
 public class GearSubsystem extends Subsystem {
 
-    Servo GrDrR, GrDrL;
-     
+    Servo GrDrR, GrDrL; 
     
     public GearSubsystem(){
     	GrDrR = new Servo(RobotMap.GEAR_DOOR_R);
     	GrDrL = new Servo(RobotMap.GEAR_DOOR_L);
     }
-    
-    public void setup(double angleLeft){
-    	GrDrL.setAngle(angleLeft);
-    }
-    
+        
     public void open(){
 		GrDrR.setAngle(0);
 		GrDrL.setAngle(180);
@@ -36,14 +29,20 @@ public class GearSubsystem extends Subsystem {
 		SmartDashboard.putBoolean("GearDoor", false);
     }
     
-    public void run(boolean open, boolean close){
-    	if(open){
-    		open();
-    		
-    	}else if (close){
-    		close();
+    public void run(DoorPosition Position){
+    	switch (Position){
+		case Close:
+			close();
+			break;
+		case Open:
+			open();
+			break;
+		default:
+			close();
+			break;
     	}
     }
+    
     public void initDefaultCommand() {
     	setDefaultCommand(new TC_Gears());
     	
