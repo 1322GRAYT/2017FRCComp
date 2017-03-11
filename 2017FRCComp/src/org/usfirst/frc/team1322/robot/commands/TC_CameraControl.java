@@ -3,7 +3,6 @@ package org.usfirst.frc.team1322.robot.commands;
 import org.usfirst.frc.team1322.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -20,7 +19,8 @@ public class TC_CameraControl extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    @SuppressWarnings("unused")
+	protected void execute() {
     	Robot.oi.AuxStick.refresh();
     	boolean up = Robot.oi.AuxStick.DPad.Up;
     	boolean down = Robot.oi.AuxStick.DPad.Down;

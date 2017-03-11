@@ -1,9 +1,5 @@
 package org.usfirst.frc.team1322.robot;
 
-import org.usfirst.frc.team1322.robot.commands.TC_CameraControl;
-
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator

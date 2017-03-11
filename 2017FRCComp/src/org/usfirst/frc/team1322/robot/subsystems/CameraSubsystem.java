@@ -5,7 +5,6 @@ import org.usfirst.frc.team1322.robot.commands.TC_CameraControl;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
