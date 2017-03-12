@@ -49,5 +49,5 @@ public class RobotMap {
 	public static final int USB_AUX = 1;
 	
 	// Contour Report Location
-	public static final String ContourReport = null;
+	public static final String ContourReport = "GRIP/myContourReport";
 }
