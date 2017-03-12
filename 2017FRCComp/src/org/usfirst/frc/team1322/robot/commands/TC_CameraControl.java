@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TC_CameraControl extends Command {
 	
     public TC_CameraControl() {
-    	requires(Robot.CameraSystem);
+    	//requires(Robot.CameraSystem);
     }
 
     // Called just before this Command runs the first time

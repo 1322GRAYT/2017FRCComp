@@ -9,10 +9,8 @@ import org.usfirst.frc.team1322.robot.commands.AM_DriveToWhite;
 import org.usfirst.frc.team1322.robot.commands.AM_RedShoot;
 import org.usfirst.frc.team1322.robot.commands.AM_ShooterAuton;
 import org.usfirst.frc.team1322.robot.subsystems.*;
-
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
@@ -21,23 +19,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	
+	public static BNO055 imu; 
 	public static final DriveSubsystem DriveSystem = new DriveSubsystem();
-	public static final CameraSubsystem CameraSystem = new CameraSubsystem();
+	//public static final CameraSubsystem CameraSystem = new CameraSubsystem();
 	public static final WinchSubsystem WinchSubsystem = new WinchSubsystem();
 	public static final ShooterSubsystem ShooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem GearSubsystem = new GearSubsystem();
-	public static final GyroSubsystem GyroSubsystem = new GyroSubsystem();
+	//public static final GyroSubsystem GyroSubsystem = new GyroSubsystem();
+	
+	private double[] pos = new double[3]; // [x,y,z] position data
+	private BNO055.CalData cal;
+	private DecimalFormat f = new DecimalFormat("+000.000;-000.000");
 	
 	public static OI oi;
 
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
-	
-	public static final BNO055 imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
-			BNO055.vector_type_t.VECTOR_EULER);
-	private double[] pos = new double[3]; // [x,y,z] position data
-	private BNO055.CalData cal;
-	private DecimalFormat f = new DecimalFormat("+000.000;-000.000");
 
 	
 	@Override
@@ -50,6 +47,8 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Shoot,BKWRD,FRWRD (maybe Red)", new AM_RedShoot());
 		chooser.addObject("Shoot,BKWRD,FRWRD (maybe Blue)", new AM_BlueShoot());
 		SmartDashboard.putData("Auto mode", chooser);
+		imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+				BNO055.vector_type_t.VECTOR_EULER);
 		
 		
 		CameraServer cam1 = CameraServer.getInstance();
@@ -63,23 +62,33 @@ public class Robot extends IterativeRobot {
 
 	@Override
 	public void disabledInit() {
-		while (isDisabled()) {
-			System.out.println("COMMS: " + imu.isSensorPresent()
-					+ 		   ", INITIALIZED: " + imu.isInitialized()
-					+ 		   ", CALIBRATED: " + imu.isCalibrated());
-			
-			SmartDashboard.putBoolean("GYRO COMM: ", imu.isSensorPresent());
-			SmartDashboard.putBoolean("GYRO INIT: ", imu.isInitialized());
-			SmartDashboard.putBoolean("GYRO CALI: ", imu.getCalibration().gyro == 3);
-			SmartDashboard.putNumber("Heading", imu.getHeading());
-
-			Timer.delay(0.2); // seconds
-		}
+		SmartDashboard.putBoolean("Present", imu.isSensorPresent());
+		SmartDashboard.putBoolean("Initialized", imu.isInitialized());
 	}
 
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
+		System.out.println("COMMS: " + imu.isSensorPresent()
+						+ ", INITIALIZED: " + imu.isInitialized()
+		+ ", CALIBRATED: " + imu.isCalibrated());
+		if(imu.isInitialized()){
+			pos = imu.getVector();
+
+			/* Display the floating point data */
+			System.out.println("\tX: " + f.format(pos[0])
+				+ " Y: " + f.format(pos[1]) + " Z: " + f.format(pos[2])
+				+ "  H: " + imu.getHeading());
+
+			/* Display calibration status for each sensor. */
+			cal = imu.getCalibration();
+			System.out.println("\tCALIBRATION: Sys=" + cal.sys
+					+ " Gyro=" + cal.gyro + " Accel=" + cal.accel
+					+ " Mag=" + cal.mag);SmartDashboard.putNumber("Heading", imu.getHeading());
+					SmartDashboard.putBoolean("Present", imu.isSensorPresent());
+					SmartDashboard.putBoolean("Initialized", imu.isInitialized());
+		}
+		
 	}
 	
 	@Override
@@ -109,7 +118,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Heading", imu.getHeading());
 	}
 
 	/**

@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry including="org/usfirst/frc/team1322/robot/" kind="src" path="src"/>
-	<classpathentry kind="var" path="WPI/lib/WPILib.jar" sourcepath="/WPI">
-		<attributes>
-			<attribute name="javadoc_location" value="file:/C:/Users/Eric/wpilib/java/current/javadoc/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Eric/wpilib/java/current/lib"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="var" path="networktables" sourcepath="networktables.sources"/>
 	<classpathentry kind="var" path="opencv" sourcepath="opencv.sources"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.8.0_121"/>
-	<classpathentry kind="var" path="WPI/lib/cscore.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/TalonSRXLibJava.jar"/>
 	<classpathentry kind="var" path="wpilib" sourcepath="wpilib.sources"/>
 	<classpathentry kind="var" path="cscore" sourcepath="cscore.sources"/>
