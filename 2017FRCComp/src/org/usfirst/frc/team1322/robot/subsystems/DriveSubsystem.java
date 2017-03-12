@@ -6,13 +6,10 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
-/**
- *
- */
+
 public class DriveSubsystem extends Subsystem {
     private RobotDrive DriveSystem;
     private CANTalon m_CAN_D_FL, m_CAN_D_RL, m_CAN_D_FR, m_CAN_D_RR;
-    private int encoderValue;
     private boolean autonActivated;    
     
     public DriveSubsystem(){
@@ -23,12 +20,10 @@ public class DriveSubsystem extends Subsystem {
     	DriveSystem = new RobotDrive(m_CAN_D_FL, m_CAN_D_RL,
     								 m_CAN_D_FR, m_CAN_D_RR);
     	
-    	
     	LiveWindow.addActuator("Robot Drive", "Front Left", m_CAN_D_FL);
     	LiveWindow.addActuator("Robot Drive", "Rear Left", m_CAN_D_RL);
     	LiveWindow.addActuator("Robot Drive", "Front Right", m_CAN_D_FR);
     	LiveWindow.addActuator("Robot Drive", "Rear Right", m_CAN_D_RR);
-    	
     }
      
     public void ArcadeDrive(double forwardPower, double turnPower) {
@@ -39,20 +34,14 @@ public class DriveSubsystem extends Subsystem {
 	public void Stop() {
 		ArcadeDrive(0, 0);
 	}
-    
-	public void Shift(boolean high, boolean low){
-		
-	}
 	
     @SuppressWarnings("unused")
-	private void updateEncoder() {
-    	encoderValue = m_CAN_D_RR.getEncPosition();
+    public int getEncoderPosition() {    	
+    	return m_CAN_D_RR.getEncPosition();
     }
     
-    public int getEncoderPosition() {
-    	encoderValue = m_CAN_D_RR.getEncPosition();
-    	
-    	return encoderValue;
+    public double getScaledEncoderPosition(){
+    	return (double)getEncoderPosition() * 458.3;
     }
 
     public void setSafety(boolean safety){
@@ -74,7 +63,6 @@ public class DriveSubsystem extends Subsystem {
     }
     
     public void resetEncoder() {
-    	encoderValue = 0;
     	m_CAN_D_RR.setEncPosition(0);
     }
 
@@ -86,8 +74,15 @@ public class DriveSubsystem extends Subsystem {
 	public void setPosition(double driveToPosition) {
 		if (autonActivated){
 			ArcadeDrive(.75, 0);
-		}
-		
+		}	
+	}
+	
+	public double getVoltageLDrive(){
+		return m_CAN_D_FL.getOutputVoltage();
+	}
+	
+	public double getVoltageRDrive(){
+		return m_CAN_D_FR.getOutputVoltage();
 	}
 
 	public int getError() {

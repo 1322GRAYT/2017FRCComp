@@ -5,19 +5,38 @@ import org.usfirst.frc.team1322.robot.commands.TC_CameraControl;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
-/**
- *
- */
 public class CameraSubsystem extends Subsystem {
 	
 	private Servo upDown, leftRight;
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 	
+	NetworkTable table;
+	private static final double[] defVal = {0,0};
+	
 	public CameraSubsystem(){
 		//upDown = new Servo(RobotMap.upDown);
 		leftRight = new Servo(RobotMap.leftRight);
+		
+		table = NetworkTable.getTable(RobotMap.ContourReport);
+	}
+	
+	public double[] getcenterX(){
+		return table.getNumberArray("centerX", defVal);
+	}
+	
+	public double[] getcenterY(){
+		return table.getNumberArray("centerY", defVal);
+	}
+	
+	public double[] getheight(){
+		return table.getNumberArray("height", defVal);
+	}
+	
+	public double[] getwidth(){
+		return table.getNumberArray("width", defVal);
 	}
 	
 	public void up(){

@@ -73,7 +73,10 @@ public class Robot extends IterativeRobot {
 			
 			SmartDashboard.putBoolean("GYRO COMM: ", imu.isSensorPresent());
 			SmartDashboard.putBoolean("GYRO INIT: ", imu.isInitialized());
-			SmartDashboard.putBoolean("GYRO CALI: ", imu.isCalibrated());
+			SmartDashboard.putBoolean("GYRO CALI: ", imu.getCalibration().gyro == 3);
+			
+			
+			
 			if(imu.isSensorPresent() && imu.isInitialized() && imu.isCalibrated()){
 				SmartDashboard.putBoolean("Gyro Auton is a Go: ", true);
 			}else{

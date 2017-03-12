@@ -26,23 +26,28 @@ public class RobotMap {
 	public static final int CAN_WINCH = 9; //2 On Robot
 		
 	/*******SERVOs*******/
-		//Camera Servos
+	//Camera Servos
 	public static final int ballBlocker = 0; //Shooter Ball Blocker
 	public static final int leftRight = 1; //Not Used
-		//Ball Aim Servos
+	
+	//Ball Aim Servos
 	public static final int BALL_Y_L = 2; //Left Ball Aimer Y Axis
 	public static final int BALL_Y_R = 3; //Right Ball Aimer Y Axis
 	public static final int BALL_X_L = 4; //Left Ball Aimer X Axis
 	public static final int BALL_X_R = 5; //Right Ball Aimer X Axis
-		//Gear Door Servos
+	
+	//Gear Door Servos
 	public static final int GEAR_DOOR_L = 6;
 	public static final int GEAR_DOOR_R = 7;
 	
-		//Shifter Servos
+	//Shifter Servos
 	public static final int SHIFTER_L = 8;
 	public static final int SHIFTER_R = 9;
 	
 	/***USB Controller***/
 	public static final int USB_Driver = 0;
 	public static final int USB_AUX = 1;
+	
+	// Contour Report Location
+	public static final String ContourReport = null;
 }
