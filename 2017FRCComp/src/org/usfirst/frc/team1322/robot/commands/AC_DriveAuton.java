@@ -25,7 +25,6 @@ public class AC_DriveAuton extends Command {
     protected void initialize() {
     	DriveClock.reset();
     	Robot.DriveSystem.deactivateAutonMode();
-    	Robot.DriveSystem.setAutonMode();
     	Robot.DriveSystem.setSafety(false);
     	Robot.DriveSystem.ArcadeDrive(forwardPower, turnPower);
     	DriveClock.start();

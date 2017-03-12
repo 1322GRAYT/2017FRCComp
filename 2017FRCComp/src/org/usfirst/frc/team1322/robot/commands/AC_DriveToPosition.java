@@ -38,10 +38,8 @@ public class AC_DriveToPosition extends Command {
     	if(ResetPosition){
     		Robot.DriveSystem.resetEncoder();
     	}
-    	//Robot.DriveSystem.setPID(1, 0, 0);
-    	Robot.DriveSystem.setAutonMode();
+    	Robot.DriveSystem.setSafety(true);
     	Robot.DriveSystem.ArcadeDrive(forwardPwr, turnPwr);
-    	
     }
 
     // Called repeatedly when this Command is scheduled to run
