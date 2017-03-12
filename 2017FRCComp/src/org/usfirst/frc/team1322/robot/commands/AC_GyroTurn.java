@@ -1,36 +1,48 @@
 package org.usfirst.frc.team1322.robot.commands;
 
+import org.usfirst.frc.team1322.robot.Robot;
+
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class AC_GyroTest extends Command {
-
-    public AC_GyroTest() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+public class AC_GyroTurn extends Command {
+	double TurnDirection;
+	final static double kP = 0.06;
+	
+    public AC_GyroTurn(double turn_amount) {
+    	requires(Robot.DriveSystem);
+    	TurnDirection = Robot.imu.getHeading() - turn_amount;
+    }
+    
+    private double error(){
+    	return Robot.imu.getHeading() - TurnDirection;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.DriveSystem.ArcadeDrive(0, kP * error());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	Robot.DriveSystem.ArcadeDrive(0, kP * error());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return error() < 5;
     }
 
     // Called once after isFinished returns true
     protected void end() {
+    	Robot.DriveSystem.ArcadeDrive(0, 0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }
