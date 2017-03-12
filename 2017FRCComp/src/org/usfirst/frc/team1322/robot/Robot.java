@@ -33,7 +33,8 @@ public class Robot extends IterativeRobot {
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 	
-	private static BNO055 imu;
+	public static final BNO055 imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
+			BNO055.vector_type_t.VECTOR_EULER);
 	private double[] pos = new double[3]; // [x,y,z] position data
 	private BNO055.CalData cal;
 	private DecimalFormat f = new DecimalFormat("+000.000;-000.000");
@@ -41,10 +42,6 @@ public class Robot extends IterativeRobot {
 	
 	@Override
 	public void robotInit() {
-		
-		imu = BNO055.getInstance(BNO055.opmode_t.OPERATION_MODE_IMUPLUS,
-				BNO055.vector_type_t.VECTOR_EULER);
-		
 		oi = new OI();
 		
 		chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
@@ -74,28 +71,7 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putBoolean("GYRO COMM: ", imu.isSensorPresent());
 			SmartDashboard.putBoolean("GYRO INIT: ", imu.isInitialized());
 			SmartDashboard.putBoolean("GYRO CALI: ", imu.getCalibration().gyro == 3);
-			
-			
-			
-			if(imu.isSensorPresent() && imu.isInitialized() && imu.isCalibrated()){
-				SmartDashboard.putBoolean("Gyro Auton is a Go: ", true);
-			}else{
-				SmartDashboard.putBoolean("Gyro Auton is a Go: ", false);
-			}
-			if(imu.isInitialized()){
-				pos = imu.getVector();
-	
-				/* Display the floating point data */
-				System.out.println("\tX: " + f.format(pos[0])
-						+ 		   " Y: " + f.format(pos[1]) + " Z: " + f.format(pos[2])
-						+ 		   "  H: " + imu.getHeading());
-	
-				/* Display calibration status for each sensor. */
-				cal = imu.getCalibration();
-				System.out.println("\tCALIBRATION: Sys=" + cal.sys
-						+ 		   " Gyro=" + cal.gyro + " Accel=" + cal.accel
-						+ 		   " Mag=" + cal.mag);
-			}
+			SmartDashboard.putNumber("Heading", imu.getHeading());
 
 			Timer.delay(0.2); // seconds
 		}
@@ -118,6 +94,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Heading", imu.getHeading());
 	}
 
 	@Override
@@ -132,6 +109,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Heading", imu.getHeading());
 	}
 
 	/**
