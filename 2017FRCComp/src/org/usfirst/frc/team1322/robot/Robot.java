@@ -40,7 +40,7 @@ public class Robot extends IterativeRobot {
 	public void robotInit() {
 		oi = new OI();
 		gyro = new ADXRS450_Gyro();
-		//camTable = NetworkTable.getTable(RobotMap.ContourReport);
+		camTable = NetworkTable.getTable(RobotMap.ContourReport);
 		
 		//chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
 		//chooser.addObject("Just Shoot", new AM_ShooterAuton());

@@ -10,7 +10,7 @@ public class AC_DriveGyroTimed extends Command {
 	double	setPosition, 
 			RunTime,
 			ForwardPower,
-			kP = 0.06,
+			kP = -0.1,
 			Error;
 	Timer RunTimer;
 		

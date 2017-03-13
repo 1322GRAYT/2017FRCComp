@@ -50,10 +50,10 @@ public class DriveSubsystem extends Subsystem {
 	}
 	
 	public void Restart(){
-		m_CAN_D_FL.changeControlMode(TalonControlMode.Voltage);
-		m_CAN_D_FR.changeControlMode(TalonControlMode.Voltage);
-		m_CAN_D_RL.changeControlMode(TalonControlMode.Voltage);
-		m_CAN_D_RR.changeControlMode(TalonControlMode.Voltage);
+		m_CAN_D_FL.changeControlMode(TalonControlMode.PercentVbus);
+		m_CAN_D_FR.changeControlMode(TalonControlMode.PercentVbus);
+		m_CAN_D_RL.changeControlMode(TalonControlMode.PercentVbus);
+		m_CAN_D_RR.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	/************
@@ -89,13 +89,6 @@ public class DriveSubsystem extends Subsystem {
      */
     public void setPID(double Kp, double Ki, double Kd){
     	m_CAN_D_RR.setPID(Kp, Ki, Kd);
-    }
-    
-    /**********
-     * Sets Safety to on
-     */
-    public void deactivateAutonMode(){
-    	setSafety(true);
     }
     
     /**********

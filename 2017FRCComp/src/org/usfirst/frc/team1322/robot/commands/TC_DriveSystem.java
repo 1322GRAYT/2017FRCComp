@@ -18,7 +18,7 @@ public class TC_DriveSystem extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.DriveSystem.Stop();
+    	Robot.DriveSystem.Restart();
     	Robot.DriveSystem.resetEncoder();
     	
     }
