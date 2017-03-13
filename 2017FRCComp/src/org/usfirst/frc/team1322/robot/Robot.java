@@ -7,6 +7,7 @@ import org.usfirst.frc.team1322.robot.commands.AM_DriveToWhite;
 import org.usfirst.frc.team1322.robot.commands.AM_GyroDistanceForward;
 import org.usfirst.frc.team1322.robot.commands.AM_RedShoot;
 import org.usfirst.frc.team1322.robot.commands.AM_ShooterAuton;
+import org.usfirst.frc.team1322.robot.commands.AM_VisionTest;
 import org.usfirst.frc.team1322.robot.subsystems.*;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -21,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends IterativeRobot {
 	public static final DriveSubsystem DriveSystem = new DriveSubsystem();
-	//public static final CameraSubsystem CameraSystem = new CameraSubsystem();
+	public static final CameraSubsystem CameraSystem = new CameraSubsystem();
 	public static final WinchSubsystem WinchSubsystem = new WinchSubsystem();
 	public static final ShooterSubsystem ShooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem GearSubsystem = new GearSubsystem();
@@ -48,6 +49,7 @@ public class Robot extends IterativeRobot {
 		//chooser.addObject("Shoot,BKWRD,FRWRD (maybe Red)", new AM_RedShoot());
 		//chooser.addObject("Shoot,BKWRD,FRWRD (maybe Blue)", new AM_BlueShoot());
 		chooser.addObject("GyroForward", new AM_GyroDistanceForward());
+		chooser.addObject("VisionTest", new AM_VisionTest());
 		SmartDashboard.putData("Auto mode", chooser);
 		
 		
