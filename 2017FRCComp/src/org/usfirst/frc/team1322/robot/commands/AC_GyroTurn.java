@@ -13,11 +13,11 @@ public class AC_GyroTurn extends Command {
 	
     public AC_GyroTurn(double turn_amount) {
     	requires(Robot.DriveSystem);
-    	TurnDirection = Robot.imu.getHeading() - turn_amount;
+    	Robot.gyro.reset();
     }
     
     private double error(){
-    	return Robot.imu.getHeading() - TurnDirection;
+    	return Robot.gyro.getAngle();
     }
 
     // Called just before this Command runs the first time

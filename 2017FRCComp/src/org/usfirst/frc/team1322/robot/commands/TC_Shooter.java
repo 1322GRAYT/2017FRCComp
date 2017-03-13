@@ -23,7 +23,7 @@ public class TC_Shooter extends Command {
     	if(Robot.oi.AuxStick.Triggers.Combined > 0.5){
     		Robot.ShooterSubsystem.ShootBalls();
     	}
-    	else if (Robot.oi.AuxStick.Triggers.Combined > -0.5){
+    	else if (Robot.oi.AuxStick.Triggers.Combined < -0.5){
     		Robot.ShooterSubsystem.BackFeed();
     	}
     	else{

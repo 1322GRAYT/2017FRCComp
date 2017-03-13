@@ -49,6 +49,13 @@ public class DriveSubsystem extends Subsystem {
 		m_CAN_D_RR.changeControlMode(TalonControlMode.Disabled);
 	}
 	
+	public void Restart(){
+		m_CAN_D_FL.changeControlMode(TalonControlMode.Voltage);
+		m_CAN_D_FR.changeControlMode(TalonControlMode.Voltage);
+		m_CAN_D_RL.changeControlMode(TalonControlMode.Voltage);
+		m_CAN_D_RR.changeControlMode(TalonControlMode.Voltage);
+	}
+	
 	/************
 	 * Get Encoder Position
 	 * @return Gets Encoder Count
