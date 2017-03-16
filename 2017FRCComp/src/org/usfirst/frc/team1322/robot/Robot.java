@@ -43,11 +43,11 @@ public class Robot extends IterativeRobot {
 		gyro = new ADXRS450_Gyro();
 		camTable = NetworkTable.getTable(RobotMap.ContourReport);
 		
-		//chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
-		//chooser.addObject("Just Shoot", new AM_ShooterAuton());
-		//chooser.addObject("Drive to White", new AM_DriveToWhite());
-		//chooser.addObject("Shoot,BKWRD,FRWRD (maybe Red)", new AM_RedShoot());
-		//chooser.addObject("Shoot,BKWRD,FRWRD (maybe Blue)", new AM_BlueShoot());
+		chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
+		chooser.addObject("Just Shoot", new AM_ShooterAuton());
+		chooser.addObject("Drive to White", new AM_DriveToWhite());
+		chooser.addObject("Shoot,BKWRD,FRWRD (maybe Red)", new AM_RedShoot());
+		chooser.addObject("Shoot,BKWRD,FRWRD (maybe Blue)", new AM_BlueShoot());
 		chooser.addObject("GyroForward", new AM_GyroDistanceForward());
 		chooser.addObject("VisionTest", new AM_VisionTest());
 		SmartDashboard.putData("Auto mode", chooser);
@@ -56,10 +56,14 @@ public class Robot extends IterativeRobot {
 		CameraServer cam1 = CameraServer.getInstance();
 		cam1.startAutomaticCapture(0).setResolution(640, 480);
 		
-		//UsbCamera gearCam = new UsbCamera("cam0", 0);
+		/*********Uncomment if You need a Second Camera********
+		UsbCamera gearCam = new UsbCamera("cam0", 0);
+		/**Both Cameras will not work Over USB at this Resoloution **/
 		//gearCam.setResolution(640, 480);
-		//MjpegServer gearServer = new MjpegServer("Gear Cam 0", 1183);
-		//gearServer.setSource(gearCam); 	
+		/**MjpegServer gearServer = new MjpegServer("Gear Cam 0", 1183);
+		gearServer.setSource(gearCam); 	
+		 * 
+		 */
 	}
 
 	@Override
