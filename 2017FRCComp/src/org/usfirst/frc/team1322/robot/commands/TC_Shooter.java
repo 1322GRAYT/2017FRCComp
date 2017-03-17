@@ -22,6 +22,7 @@ public class TC_Shooter extends Command {
 	protected void execute() {
 		//TODO: Remove SmartDashboard Reference
 		SmartDashboard.putNumber("Shooter Speed", Robot.ShooterSubsystem.getShooterSpeed());
+		SmartDashboard.putNumber("Agitator Speed", Robot.ShooterSubsystem.getAgiatorSpeed());
 		
     	Robot.oi.AuxStick.refresh();
     	if(Robot.oi.AuxStick.Triggers.Combined > 0.5){
