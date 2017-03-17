@@ -3,6 +3,7 @@ package org.usfirst.frc.team1322.robot.commands;
 import org.usfirst.frc.team1322.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -19,6 +20,9 @@ public class TC_Shooter extends Command {
     // Called repeatedly when this Command is scheduled to run
 
 	protected void execute() {
+		//TODO: Remove SmartDashboard Reference
+		SmartDashboard.putNumber("Shooter Speed", Robot.ShooterSubsystem.getShooterSpeed());
+		
     	Robot.oi.AuxStick.refresh();
     	if(Robot.oi.AuxStick.Triggers.Combined > 0.5){
     		Robot.ShooterSubsystem.ShootBalls();

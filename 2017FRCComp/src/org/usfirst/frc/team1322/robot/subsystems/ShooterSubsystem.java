@@ -16,6 +16,10 @@ public class ShooterSubsystem extends Subsystem {
 		
 	Servo ballBlocker;
 	CANTalon ballAgitator, ballAgitator2, ballShooter, ballShooter2, ballIntake;
+	/**ANDREW ADJUST THESE**/
+	double agitatorSpeed = .27;
+	int shooterSpinUpTime = 1325;//Miliseconds
+	/**DONT ADJUST ANYTHING MORE**/
 	
 	public ShooterSubsystem(){
 		ballBlocker = new Servo(RobotMap.ballBlocker);
@@ -23,20 +27,28 @@ public class ShooterSubsystem extends Subsystem {
 		ballAgitator2 = new CANTalon(RobotMap.CAN_BALL_AGI2);
 		ballShooter = new CANTalon(RobotMap.CAN_SHT);	
 		ballShooter2 = new CANTalon(RobotMap.CAN_SHT_L);
+		//Set Encoder Up
+		ballShooter2.setFeedbackDevice(CANTalon.FeedbackDevice.CtreMagEncoder_Relative);
+		//ballShooter2.changeControlMode(CANTalon.TalonControlMode.Speed);
+		//ballShooter2.
+		
 		ballIntake = new CANTalon(RobotMap.CAN_BALL_IT);
 		ballShooter2.reverseOutput(true);
 	}
 	
-			
+	public double getShooterSpeed(){
+		return ballShooter2.getSpeed();
+	}
+	
 	public void ShootBalls(){
 		ballBlocker.setAngle(180);
 		runShooter(1);
 		try {
-			TimeUnit.MILLISECONDS.sleep(1250);
+			TimeUnit.MILLISECONDS.sleep(shooterSpinUpTime);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		runBallAgi(.27);
+		runBallAgi(agitatorSpeed);
 	}
 	
 	public void BackFeed(){
