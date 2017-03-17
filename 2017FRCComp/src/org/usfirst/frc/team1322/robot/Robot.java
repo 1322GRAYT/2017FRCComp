@@ -1,7 +1,6 @@
 
 package org.usfirst.frc.team1322.robot;
 
-import org.usfirst.frc.team1322.robot.commands.AM_BlueShoot;
 import org.usfirst.frc.team1322.robot.commands.AM_DriveForwardGear;
 import org.usfirst.frc.team1322.robot.commands.AM_DriveToWhite;
 import org.usfirst.frc.team1322.robot.commands.AM_GyroDistanceForward;
@@ -42,11 +41,10 @@ public class Robot extends IterativeRobot {
 		gyro = new ADXRS450_Gyro();
 		camTable = NetworkTable.getTable(RobotMap.ContourReport);
 		
-		//chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
-		//chooser.addObject("Just Shoot", new AM_ShooterAuton());
-		//chooser.addObject("Drive to White", new AM_DriveToWhite());
-		//chooser.addObject("Shoot,BKWRD,FRWRD (maybe Red)", new AM_RedShoot());
-		//chooser.addObject("Shoot,BKWRD,FRWRD (maybe Blue)", new AM_BlueShoot());
+		chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
+		chooser.addObject("Just Shoot", new AM_ShooterAuton());
+		chooser.addObject("Drive to White", new AM_DriveToWhite());
+		chooser.addObject("Shoot,BKWRD,FRWRD", new AM_RedShoot());
 		chooser.addObject("GyroForward", new AM_GyroDistanceForward());
 		SmartDashboard.putData("Auto mode", chooser);
 		

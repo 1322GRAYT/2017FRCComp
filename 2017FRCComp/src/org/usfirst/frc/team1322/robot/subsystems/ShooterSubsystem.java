@@ -30,14 +30,12 @@ public class ShooterSubsystem extends Subsystem {
 			
 	public void ShootBalls(){
 		ballBlocker.setAngle(180);
+		runShooter(1);
 		try {
-			TimeUnit.MILLISECONDS.sleep(250);
+			TimeUnit.MILLISECONDS.sleep(1250);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		runShooter(1);
-		try {TimeUnit.MILLISECONDS.sleep(250);} 
-		catch (InterruptedException e) {e.printStackTrace();}
 		runBallAgi(.27);
 	}
 	
