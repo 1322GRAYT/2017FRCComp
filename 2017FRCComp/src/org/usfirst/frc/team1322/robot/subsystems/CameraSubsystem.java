@@ -1,10 +1,7 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.Robot;
-import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.TC_CameraControl;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.networktables.NetworkTable;
 
 public class CameraSubsystem extends Subsystem {
 	

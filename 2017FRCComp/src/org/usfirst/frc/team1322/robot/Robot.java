@@ -24,6 +24,8 @@ public class Robot extends IterativeRobot {
 	public static final WinchSubsystem WinchSubsystem = new WinchSubsystem();
 	public static final ShooterSubsystem ShooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem GearSubsystem = new GearSubsystem();
+	public static final BallShooter BallShooter = new BallShooter();
+	public static final ShooterIntake ShooterIntake = new ShooterIntake();
 	public static Gyro gyro;
 	
 	
@@ -48,9 +50,9 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("GyroForward", new AM_GyroDistanceForward());
 		SmartDashboard.putData("Auto mode", chooser);
 		
-		
 		CameraServer cam1 = CameraServer.getInstance();
 		cam1.startAutomaticCapture(0).setResolution(640, 480);
+		gyro.calibrate();
 		
 		//UsbCamera gearCam = new UsbCamera("cam0", 0);
 		//gearCam.setResolution(640, 480);
@@ -65,7 +67,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
-		gyro.calibrate();
+		
 		
 		
 	}

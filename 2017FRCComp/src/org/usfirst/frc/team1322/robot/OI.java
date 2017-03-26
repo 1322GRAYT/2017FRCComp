@@ -1,5 +1,7 @@
 package org.usfirst.frc.team1322.robot;
 
+import org.usfirst.frc.team1322.robot.commands.BM_ShootBalls;
+import org.usfirst.frc.team1322.robot.triggers.ShooterTrigger;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -8,8 +10,9 @@ package org.usfirst.frc.team1322.robot;
 public class OI {    
 	
 	public XBoxController DriverStick = new XBoxController(RobotMap.USB_Driver), 
-						  AuxStick = new XBoxController(RobotMap.USB_AUX);		
+						  AuxStick = new XBoxController(RobotMap.USB_AUX);
+	private ShooterTrigger TestTrigger = new ShooterTrigger();
 	public OI(){
-		
+		TestTrigger.whenActive(new BM_ShootBalls());
 	}
 }
