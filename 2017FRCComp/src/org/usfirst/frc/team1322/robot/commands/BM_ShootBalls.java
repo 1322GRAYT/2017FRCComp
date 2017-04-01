@@ -21,8 +21,10 @@ public class BM_ShootBalls extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	Robot.BallShooter.disablePID();
     	ShooterStartup.reset();
     	ShooterStartup.start();
+    	
     	Robot.BallShooter.set(1.0);
     	Robot.BallShooter.openBallBlock(true);
     }

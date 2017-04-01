@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.TC_Winch;
 
 import com.ctre.CANTalon;
 
@@ -12,35 +11,26 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class WinchSubsystem extends Subsystem {
 	
-	private CANTalon CAN_WINCH;
+	private CANTalon m_Winch;
 	
 	public WinchSubsystem(){
-		CAN_WINCH = new CANTalon(RobotMap.CAN_WINCH);
+		m_Winch = new CANTalon(RobotMap.CAN_WINCH);
+		m_Winch.enableBrakeMode(true);
 	}
 	
-	public void run(boolean up, boolean down){
-		if(up){
-			brake(false);
-			CAN_WINCH.set(100);
-		}else if(down){
-			brake(false);
-			CAN_WINCH.set(-100);
-		}else{
-			stop();
-			brake(true);
-		}
+	public void Up(){
+		m_Winch.set(1);
+	}
+	
+	public void Down(){
+		m_Winch.set(-1);
 	}
 	
     public void stop(){
-    	CAN_WINCH.set(0);
-    }
-    
-    public void brake(boolean enable){
-    	CAN_WINCH.enableBrakeMode(enable);
+    	m_Winch.set(0);
     }
 	
     public void initDefaultCommand() {
-        setDefaultCommand(new TC_Winch());
     }
 }
 

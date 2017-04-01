@@ -1,6 +1,8 @@
 package org.usfirst.frc.team1322.robot.commands;
 
 import org.usfirst.frc.team1322.robot.Robot;
+
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -25,9 +27,8 @@ public class TC_DriveSystem extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.oi.DriverStick.refresh();
-    	Robot.DriveSystem.ArcadeDrive(Robot.oi.DriverStick.LeftStick.Y,
-    			                      Robot.oi.DriverStick.RightStick.X);
+    	Robot.DriveSystem.ArcadeDrive(Robot.oi.DriverStick.getY(Hand.kLeft),
+    			                      Robot.oi.DriverStick.getX(Hand.kRight));
     	//TODO: Remove SmartDashboard Reference
     	SmartDashboard.putNumber("Encoder Value", Robot.DriveSystem.getEncoderPosition());
     }

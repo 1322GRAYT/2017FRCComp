@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-import org.usfirst.frc.team1322.robot.commands.TC_Gears;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -10,22 +9,22 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 enum DoorPosition {Open, Close};
 public class GearSubsystem extends Subsystem {
 
-    Servo GrDrR, GrDrL; 
+    Servo GearDoorR, GearDoorL; 
     
     public GearSubsystem(){
-    	GrDrR = new Servo(RobotMap.GEAR_DOOR_R);
-    	GrDrL = new Servo(RobotMap.GEAR_DOOR_L);
+    	GearDoorR = new Servo(RobotMap.GEAR_DOOR_R);
+    	GearDoorL = new Servo(RobotMap.GEAR_DOOR_L);
     }
         
     public void open(){
-		GrDrR.setAngle(0);
-		GrDrL.setAngle(180);
+		GearDoorR.setAngle(0);
+		GearDoorL.setAngle(180);
 		SmartDashboard.putBoolean("GearDoor", true);
     }
 
     public void close(){
-		GrDrR.setAngle(180);
-		GrDrL.setAngle(0);
+		GearDoorR.setAngle(180);
+		GearDoorL.setAngle(0);
 		SmartDashboard.putBoolean("GearDoor", false);
     }
     
@@ -44,8 +43,6 @@ public class GearSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-    	setDefaultCommand(new TC_Gears());
-    	
     }
 }
 

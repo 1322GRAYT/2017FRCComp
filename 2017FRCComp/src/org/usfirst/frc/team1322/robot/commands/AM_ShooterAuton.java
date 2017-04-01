@@ -9,7 +9,7 @@ public class AM_ShooterAuton extends CommandGroup {
 
     public AM_ShooterAuton() {
     	//Start Shooting
-    	addSequential(new AC_Shooter(14));
+    	addSequential(new BM_ShootBalls(),10);
     	//Stops After 14 seconds
     }
 }

@@ -37,7 +37,7 @@ public class BallShooter extends Subsystem {
 		ballShooter2.reverseOutput(true);
 	}
 	
-	public void enable(){
+	public void enablePID(){
 		ballShooter.changeControlMode(TalonControlMode.Speed);
 		ballShooter.set(0);
 		pidModeSet = true;
@@ -67,12 +67,10 @@ public class BallShooter extends Subsystem {
 	}
 	
 	public void openBallBlock(boolean set){
-		ballBlocker.setAngle(set ? 120 : 120);
+		ballBlocker.setAngle(set ? 180 : 120);
 	}
 
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
     }
 }
 

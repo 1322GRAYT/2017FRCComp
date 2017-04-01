@@ -12,27 +12,31 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ShooterIntake extends Subsystem {
 
-	CANTalon ballAgitator, ballAgitator2;
+	CANTalon shooterIntake, shooterIntake_2;
+	final static double[] PIDDefault = {0, 0, 0, 0.0025}; // Set for default {P, I, D, F} settings 
 	boolean pidModeSet = false;
 	double defError = 50;
 	
 	public ShooterIntake(){
-		ballAgitator = new CANTalon(RobotMap.CAN_BALL_AGI);
-		ballAgitator2 = new CANTalon(RobotMap.CAN_BALL_AGI2);
+		shooterIntake = new CANTalon(RobotMap.CAN_BALL_AGI);
+		shooterIntake_2 = new CANTalon(RobotMap.CAN_BALL_AGI2);
 		
-		ballAgitator2.changeControlMode(TalonControlMode.Follower);
-		ballAgitator2.set(ballAgitator.getDeviceID());
+		shooterIntake.setPID(PIDDefault[0], PIDDefault[1], PIDDefault[2]);
+		shooterIntake.setF(PIDDefault[3]);
+		
+		shooterIntake_2.changeControlMode(TalonControlMode.Follower);
+		shooterIntake_2.set(shooterIntake.getDeviceID());
 	}
 	
-	public void enable(){
-		ballAgitator.changeControlMode(TalonControlMode.Speed);
-		ballAgitator.set(0);
+	public void enablePID(){
+		shooterIntake.changeControlMode(TalonControlMode.Speed);
+		shooterIntake.set(0);
 		pidModeSet  = true;
 	}
 	
 	public void disablePID(){
-		ballAgitator.changeControlMode(TalonControlMode.PercentVbus);
-		ballAgitator.set(0);
+		shooterIntake.changeControlMode(TalonControlMode.PercentVbus);
+		shooterIntake.set(0);
 		pidModeSet = false;
 	}
 	
@@ -43,14 +47,14 @@ public class ShooterIntake extends Subsystem {
 		else if (input < 0 && pidModeSet){
 			input = 0;
 		}
-		ballAgitator.set(input);
+		shooterIntake.set(input);
 	}
 	
 	public boolean errorInLim(){
-		return Math.abs(ballAgitator.getError()) <= defError;
+		return Math.abs(shooterIntake.getError()) <= defError;
 	}
 	public boolean errorInLim(double error){
-		return Math.abs(ballAgitator.getError()) <= error;
+		return Math.abs(shooterIntake.getError()) <= error;
 	}
 	
     public void initDefaultCommand() {

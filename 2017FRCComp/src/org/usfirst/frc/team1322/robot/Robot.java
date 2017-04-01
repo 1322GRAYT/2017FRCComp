@@ -22,7 +22,6 @@ public class Robot extends IterativeRobot {
 	public static final DriveSubsystem DriveSystem = new DriveSubsystem();
 	//public static final CameraSubsystem CameraSystem = new CameraSubsystem();
 	public static final WinchSubsystem WinchSubsystem = new WinchSubsystem();
-	public static final ShooterSubsystem ShooterSubsystem = new ShooterSubsystem();
 	public static final GearSubsystem GearSubsystem = new GearSubsystem();
 	public static final BallShooter BallShooter = new BallShooter();
 	public static final ShooterIntake ShooterIntake = new ShooterIntake();
