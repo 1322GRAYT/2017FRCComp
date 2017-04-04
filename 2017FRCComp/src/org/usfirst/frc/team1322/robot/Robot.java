@@ -10,6 +10,7 @@ import org.usfirst.frc.team1322.robot.subsystems.*;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
@@ -26,6 +27,7 @@ public class Robot extends IterativeRobot {
 	public static final BallShooter BallShooter = new BallShooter();
 	public static final ShooterIntake ShooterIntake = new ShooterIntake();
 	public static Gyro gyro;
+	public static final UltrasonicSens ultrasonic = new UltrasonicSens();
 	
 	
 	public static OI oi;

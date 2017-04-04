@@ -18,8 +18,8 @@ public class RobotMap {
 	public static final int CAN_SHOOT_2 = 5; //9 On Robot
 	public static final int CAN_SHT = 6; //10 On Robot
 		//Ball
-	public static final int CAN_BALL_AGI2 = 7; //11 On Robot
-	public static final int CAN_BALL_AGI = 8; //13 On Robot
+	public static final int CAN_BALL_AGI2 = 8; //13 On Robot
+	public static final int CAN_BALL_AGI = 7; //11 On Robot
 	public static final int CAN_BALL_IT = 10; // On Robot
 		//Winch
 	public static final int CAN_WINCH = 9; //2 On Robot
@@ -49,4 +49,8 @@ public class RobotMap {
 	
 	// Contour Report Location
 	public static final String ContourReport = "GRIP/myContourReport";
+	
+	
+	/***Sensors***/
+	public static final int Ultrasonic = 0; //analog input
 }

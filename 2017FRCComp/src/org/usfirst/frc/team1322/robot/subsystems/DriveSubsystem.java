@@ -61,7 +61,7 @@ public class DriveSubsystem extends Subsystem {
 	 * Get Encoder Position
 	 * @return Gets Encoder Count
 	 */
-    public int getEncoderPosition() {    	
+    public int getEncoderPosition() {
     	return m_CAN_D_RR.getEncPosition();
     }
     
