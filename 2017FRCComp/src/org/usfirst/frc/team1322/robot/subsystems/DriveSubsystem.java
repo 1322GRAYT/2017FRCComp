@@ -8,12 +8,13 @@ import com.ctre.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DriveSubsystem extends Subsystem {
     private RobotDrive DriveSystem;
     private CANTalon m_CAN_D_FL, m_CAN_D_RL, m_CAN_D_FR, m_CAN_D_RR;
     
-    final static double EncoderScale = 458.3;
+    final static double EncoderScale = 645;
     
     public DriveSubsystem(){
     	m_CAN_D_FL = new CANTalon(RobotMap.CAN_D_FL);
@@ -37,7 +38,17 @@ public class DriveSubsystem extends Subsystem {
      */
     public void ArcadeDrive(double forwardPower, double turnPower) {
     	DriveSystem.arcadeDrive(forwardPower, turnPower);
-    	System.out.println(forwardPower);
+    	SmartDashboard.putNumber("ForwardPow", forwardPower);
+    	SmartDashboard.putNumber("TurnPower", turnPower);
+    	DisplayCurrents();
+    }
+    
+    
+    public void DisplayCurrents(){
+    	SmartDashboard.putNumber("FL Cur", m_CAN_D_FL.getOutputCurrent()-1.5);
+    	SmartDashboard.putNumber("FR Cur", m_CAN_D_FR.getOutputCurrent());
+    	SmartDashboard.putNumber("RL Cur", m_CAN_D_RL.getOutputCurrent());
+    	SmartDashboard.putNumber("RR Cur", m_CAN_D_FL.getOutputCurrent()-1.5);
     }
     
     /**********

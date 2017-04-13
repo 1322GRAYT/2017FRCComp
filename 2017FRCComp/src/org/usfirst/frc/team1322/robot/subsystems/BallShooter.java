@@ -3,10 +3,12 @@ package org.usfirst.frc.team1322.robot.subsystems;
 import org.usfirst.frc.team1322.robot.RobotMap;
 
 import com.ctre.CANTalon;
+import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -29,12 +31,13 @@ public class BallShooter extends Subsystem {
 		ballShooter2 = new CANTalon(RobotMap.CAN_SHOOT_2);
 		ballBlocker = new Servo(RobotMap.ballBlocker);
 		
-		ballShooter.setPID(PIDDefault[0], PIDDefault[1], PIDDefault[2]);
-		ballShooter.setF(PIDDefault[3]);
+		ballShooter.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
+		
+		ballShooter.setPID(PIDDefault[0], PIDDefault[1], PIDDefault[2], 
+				PIDDefault[3], 0, 0, 0);
 		
 		ballShooter2.changeControlMode(TalonControlMode.Follower);
 		ballShooter2.set(ballShooter.getDeviceID());
-		ballShooter2.reverseOutput(true);
 	}
 	
 	public void enablePID(){
@@ -49,6 +52,10 @@ public class BallShooter extends Subsystem {
 		pidModeSet = false;
 	}
 	
+	public double getV(){
+		return ballShooter.getSpeed();
+	}
+	
 	public void set(double input){
 		if (input > 2 && !pidModeSet){
 			input = 0;
@@ -57,6 +64,7 @@ public class BallShooter extends Subsystem {
 			input = 0;
 		}
 		ballShooter.set(input);
+		SmartDashboard.putNumber("ActualInput", input);
 	}
 	
 	public boolean errorInLim(){

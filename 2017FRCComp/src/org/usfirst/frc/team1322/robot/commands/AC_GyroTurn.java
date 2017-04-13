@@ -3,6 +3,7 @@ package org.usfirst.frc.team1322.robot.commands;
 import org.usfirst.frc.team1322.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -28,6 +29,7 @@ public class AC_GyroTurn extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.DriveSystem.ArcadeDrive(0, kP * error());
+    	SmartDashboard.putNumber("GyroError", error());
     }
 
     // Make this return true when this Command no longer needs to run execute()

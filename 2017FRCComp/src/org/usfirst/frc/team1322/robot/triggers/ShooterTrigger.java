@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.buttons.Trigger;
 public class ShooterTrigger extends Trigger {
 
     public boolean get() {
-        return Robot.oi.AuxStick.getTriggerAxis(Hand.kRight) > 0.5 && !(Robot.oi.AuxStick.getTriggerAxis(Hand.kLeft) > 0.5);
+    	return Robot.oi.AuxStick.getTriggerAxis(Hand.kRight) > 0.5 &&
+    			!(Robot.oi.AuxStick.getTriggerAxis(Hand.kLeft) > 0.5);
     }
 }

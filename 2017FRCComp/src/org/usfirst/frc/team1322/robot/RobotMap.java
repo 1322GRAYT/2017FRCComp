@@ -15,8 +15,8 @@ public class RobotMap {
 	public static final int CAN_D_FR = 3; //1 On Robot
 	public static final int CAN_D_RR = 4; //0 On Robot
 		//Shooter
-	public static final int CAN_SHOOT_2 = 5; //9 On Robot
-	public static final int CAN_SHT = 6; //10 On Robot
+	public static final int CAN_SHOOT_2 = 6; //9 On Robot
+	public static final int CAN_SHT = 5; //10 On Robot
 		//Ball
 	public static final int CAN_BALL_AGI2 = 8; //13 On Robot
 	public static final int CAN_BALL_AGI = 7; //11 On Robot

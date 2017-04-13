@@ -4,7 +4,9 @@ package org.usfirst.frc.team1322.robot;
 import org.usfirst.frc.team1322.robot.commands.AM_DriveForwardGear;
 import org.usfirst.frc.team1322.robot.commands.AM_DriveToWhite;
 import org.usfirst.frc.team1322.robot.commands.AM_GyroDistanceForward;
+import org.usfirst.frc.team1322.robot.commands.AM_LeftGear;
 import org.usfirst.frc.team1322.robot.commands.AM_RedShoot;
+import org.usfirst.frc.team1322.robot.commands.AM_RightGear;
 import org.usfirst.frc.team1322.robot.commands.AM_ShooterAuton;
 import org.usfirst.frc.team1322.robot.subsystems.*;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
@@ -26,8 +28,9 @@ public class Robot extends IterativeRobot {
 	public static final GearSubsystem GearSubsystem = new GearSubsystem();
 	public static final BallShooter BallShooter = new BallShooter();
 	public static final ShooterIntake ShooterIntake = new ShooterIntake();
-	public static Gyro gyro;
+	public static final Gyro gyro = new ADXRS450_Gyro();
 	public static final UltrasonicSens ultrasonic = new UltrasonicSens();
+	public static final BallPickup BallPickup = new BallPickup();
 	
 	
 	public static OI oi;
@@ -41,7 +44,6 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 		oi = new OI();
-		gyro = new ADXRS450_Gyro();
 		camTable = NetworkTable.getTable(RobotMap.ContourReport);
 		
 		chooser.addDefault("Drive & Drop Gear", new AM_DriveForwardGear());
@@ -49,7 +51,11 @@ public class Robot extends IterativeRobot {
 		chooser.addObject("Drive to White", new AM_DriveToWhite());
 		chooser.addObject("Shoot,BKWRD,FRWRD", new AM_RedShoot());
 		chooser.addObject("GyroForward", new AM_GyroDistanceForward());
+		chooser.addObject("LEFT GEAR", new AM_LeftGear());
+		chooser.addObject("Right Gear", new AM_RightGear());
 		SmartDashboard.putData("Auto mode", chooser);
+		
+		SmartDashboard.putNumber("SetPoint",0);
 		
 		CameraServer cam1 = CameraServer.getInstance();
 		cam1.startAutomaticCapture(0).setResolution(640, 480);

@@ -37,7 +37,7 @@ public class AC_DriveToPosition extends Command {
     	if(ResetPosition){
     		Robot.DriveSystem.resetEncoder();
     	}
-    	Robot.DriveSystem.setSafety(true);
+    	Robot.DriveSystem.setSafety(false);
     	Robot.DriveSystem.ArcadeDrive(forwardPwr, turnPwr);
     }
 
