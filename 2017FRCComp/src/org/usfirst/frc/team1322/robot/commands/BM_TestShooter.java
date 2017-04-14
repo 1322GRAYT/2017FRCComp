@@ -25,7 +25,7 @@ public class BM_TestShooter extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.BallShooter.set(1000);
+    	Robot.BallShooter.set(3200);
     	SmartDashboard.putNumber("ShootVel", Robot.BallShooter.getV());
     	SmartDashboard.putBoolean("ShootOP", true);
     }

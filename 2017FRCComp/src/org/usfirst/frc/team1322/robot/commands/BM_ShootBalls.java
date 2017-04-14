@@ -20,7 +20,7 @@ public class BM_ShootBalls extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.BallShooter.disablePID();
+    	Robot.BallShooter.enablePID();;
     	ShooterStartup.reset();
     	ShooterStartup.start();
     	
@@ -30,9 +30,9 @@ public class BM_ShootBalls extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if (ShooterStartup.get() > rampTime){
-    		Robot.ShooterIntake.set(0.27);
-    	}
+    	if (ShooterStartup.get() > 0.5) Robot.BallShooter.set(3200);
+    	
+    	if (Robot.BallShooter.getV() > 3000) Robot.ShooterIntake.set(0.27);
     }
 
     // Make this return true when this Command no longer needs to run execute()

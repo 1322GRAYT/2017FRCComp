@@ -17,7 +17,7 @@ public class BallShooter extends Subsystem {
 
 	Servo ballBlocker;
 	CANTalon  ballShooter, ballShooter2;
-	final static double[] PIDDefault = {0, 0, 0, 0.0025}; // Set for default {P, I, D, F} settings 
+	final static double[] PIDDefault = {.6, 0, .5, 0.04}; // Set for default {P, I, D, F} settings 
 	private static final double defError = 100;
 	boolean pidModeSet = false;
     
@@ -41,6 +41,8 @@ public class BallShooter extends Subsystem {
 	}
 	
 	public void enablePID(){
+		ballShooter.configNominalOutputVoltage(+0.0f, -0.0f);
+		ballShooter.configPeakOutputVoltage(+12.0f, -12.0f);
 		ballShooter.changeControlMode(TalonControlMode.Speed);
 		ballShooter.set(0);
 		pidModeSet = true;
@@ -65,13 +67,18 @@ public class BallShooter extends Subsystem {
 		}
 		ballShooter.set(input);
 		SmartDashboard.putNumber("ActualInput", input);
+		SmartDashboard.putNumber("ShootVoltage", ballShooter.getOutputVoltage());
 	}
 	
 	public boolean errorInLim(){
-		return Math.abs(ballShooter.getError()) <= defError;
+		double recError = Math.abs(ballShooter.getError());
+		SmartDashboard.putNumber("ErrorShooter", recError);
+		return  recError <= defError;
 	}
 	public boolean errorInLim(double error){
-		return Math.abs(ballShooter.getError()) <= error;
+		double recError = Math.abs(ballShooter.getError());
+		SmartDashboard.putNumber("ErrorShooter", recError);
+		return  recError <= error;
 	}
 	
 	public void openBallBlock(boolean set){
