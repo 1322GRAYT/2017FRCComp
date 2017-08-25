@@ -37,32 +37,33 @@ public class OI {
 	
 	
 	public OI(){
-		shootTrigger = new ShooterTrigger();
-		Backfeed = new Backfeed();
+		//shootTrigger = new ShooterTrigger();
+		//Backfeed = new Backfeed();
 		
 		OpenGear = new JoystickButton(AuxStick,6);
 		CloseGear = new JoystickButton(AuxStick,5);
 		WinchUp = new JoystickButton(AuxStick, 4);
 		WinchDown = new JoystickButton(AuxStick, 1);
 		
-		BallIn = new BallIn();
-		BallOut = new BallOut();
+		//BallIn = new BallIn();
+		//BallOut = new BallOut();
 		
 		
-		TestBed = new JoystickButton(DriverStick, 1);
-		TestBed2 = new JoystickButton(DriverStick, 2);
+		//TestBed = new JoystickButton(DriverStick, 1);
+		//TestBed2 = new JoystickButton(DriverStick, 2);
 		
-		TestBed.toggleWhenPressed(new AC_DriveToPosition(72, true, -.5, 0));
-		TestBed2.whenPressed(new AC_TurnGyro(45, true));
+		//TestBed.toggleWhenPressed(new AC_DriveToPosition(72, true, -.5, 0));
+		//TestBed2.whenPressed(new AC_TurnGyro(45, true));
 		
 		
-		BallIn.whileActive(new BM_BallPickup(true));
-		BallOut.whileActive(new BM_BallPickup(false));
-		shootTrigger.whileActive(new BM_ShootBalls());
-		Backfeed.whileActive(new BM_BackfeedShooter());
+		//BallIn.whileActive(new BM_BallPickup(true));
+		//BallOut.whileActive(new BM_BallPickup(false));
+		//shootTrigger.whileActive(new BM_ShootBalls());
+		//Backfeed.whileActive(new BM_BackfeedShooter());
 		//shootTrigger.whileActive(new BM_TestShooter());
 		OpenGear.whenPressed(new BM_GearControl(true));
-		CloseGear.whenPressed(new BM_GearControl(false));
+		OpenGear.whenReleased(new BM_GearControl(false));
+		CloseGear.whenPressed(new BM_GearControl(true));
 		WinchUp.whileHeld(new BM_WinchControl(true));
 		WinchDown.whileHeld(new BM_WinchControl(false));
 	}

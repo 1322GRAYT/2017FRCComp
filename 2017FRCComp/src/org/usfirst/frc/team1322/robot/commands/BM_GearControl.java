@@ -9,18 +9,19 @@ import edu.wpi.first.wpilibj.command.InstantCommand;
  */
 public class BM_GearControl extends InstantCommand {
 	
-	boolean Open;
+	boolean Eject;
 
-    public BM_GearControl(boolean Open) {
+    public BM_GearControl(boolean Eject) {
         super();
         requires(Robot.GearSubsystem);
-        this.Open = Open;
+        this.Eject = Eject;
     }
 
     // Called once when the command executes
     protected void initialize() {
-    	if (Open) Robot.GearSubsystem.open();
-    	else Robot.GearSubsystem.close();
+    	//Robot.GearSubsystem.run();
+    	if(Eject){Robot.GearSubsystem.eject();}
+    	else{Robot.GearSubsystem.close();}
     }
 
 }

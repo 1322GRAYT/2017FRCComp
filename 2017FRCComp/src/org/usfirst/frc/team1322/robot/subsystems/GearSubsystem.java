@@ -2,43 +2,41 @@ package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.Solenoid;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-enum DoorPosition {Open, Close};
 public class GearSubsystem extends Subsystem {
 
-    Servo GearDoorR, GearDoorL; 
-    
+	Compressor c = new Compressor(0);
+	Solenoid leftPiston = new Solenoid(1);
+	Timer wait = new Timer();
+   
     public GearSubsystem(){
-    	GearDoorR = new Servo(RobotMap.GEAR_DOOR_R);
-    	GearDoorL = new Servo(RobotMap.GEAR_DOOR_L);
+    	c.setClosedLoopControl(true);
+    	
     }
         
-    public void open(){
-		GearDoorR.setAngle(0);
-		GearDoorL.setAngle(180);
-		SmartDashboard.putBoolean("GearDoor", true);
+    public void eject(){
+		leftPiston.set(true);
+		SmartDashboard.putBoolean("GearPistonsExtended", true);
     }
 
     public void close(){
-		GearDoorR.setAngle(180);
-		GearDoorL.setAngle(0);
-		SmartDashboard.putBoolean("GearDoor", false);
+		leftPiston.set(false);
+		SmartDashboard.putBoolean("GearPistonsExtended", false);
     }
     
-    public void run(DoorPosition Position){
-    	switch (Position){
-		case Close:
-			close();
-			break;
-		case Open:
-			open();
-			break;
-		default:
-			close();
-			break;
+    public void run(){
+    	wait.reset();
+    	wait.start();
+    	eject();
+    	wait.start();
+    	if(wait.get() > 1){
+    		close();
     	}
     }
     
