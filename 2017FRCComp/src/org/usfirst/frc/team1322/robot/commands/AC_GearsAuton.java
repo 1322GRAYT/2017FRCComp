@@ -34,9 +34,9 @@ public class AC_GearsAuton extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (toggle){
-    		Robot.GearSubsystem.eject();
-    	}else if(!toggle){
     		Robot.GearSubsystem.close();
+    	}else if(!toggle){
+    		Robot.GearSubsystem.eject();
     	}
     	
     }

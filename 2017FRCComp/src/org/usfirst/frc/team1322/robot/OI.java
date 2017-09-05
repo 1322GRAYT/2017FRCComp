@@ -7,6 +7,7 @@ import org.usfirst.frc.team1322.robot.commands.AC_TurnGyro;
 import org.usfirst.frc.team1322.robot.commands.BM_BackfeedShooter;
 import org.usfirst.frc.team1322.robot.commands.BM_BallPickup;
 import org.usfirst.frc.team1322.robot.commands.BM_GearControl;
+import org.usfirst.frc.team1322.robot.commands.BM_GearShift;
 import org.usfirst.frc.team1322.robot.commands.BM_ShootBalls;
 import org.usfirst.frc.team1322.robot.commands.BM_TestShooter;
 import org.usfirst.frc.team1322.robot.commands.BM_WinchControl;
@@ -33,7 +34,9 @@ public class OI {
 					WinchUp,
 					WinchDown,
 					TestBed,
-					TestBed2;
+					TestBed2,
+					ShiftHigh,
+					ShiftLow;
 	
 	
 	public OI(){
@@ -44,6 +47,8 @@ public class OI {
 		CloseGear = new JoystickButton(AuxStick,5);
 		WinchUp = new JoystickButton(AuxStick, 4);
 		WinchDown = new JoystickButton(AuxStick, 1);
+		ShiftHigh = new JoystickButton(DriverStick, 6);
+		ShiftLow = new JoystickButton(DriverStick, 5);
 		
 		//BallIn = new BallIn();
 		//BallOut = new BallOut();
@@ -61,6 +66,8 @@ public class OI {
 		//shootTrigger.whileActive(new BM_ShootBalls());
 		//Backfeed.whileActive(new BM_BackfeedShooter());
 		//shootTrigger.whileActive(new BM_TestShooter());
+		ShiftHigh.whenPressed(new BM_GearShift(true));
+		ShiftLow.whenPressed(new BM_GearShift(false));
 		OpenGear.whenPressed(new BM_GearControl(true));
 		OpenGear.whenReleased(new BM_GearControl(false));
 		CloseGear.whenPressed(new BM_GearControl(true));

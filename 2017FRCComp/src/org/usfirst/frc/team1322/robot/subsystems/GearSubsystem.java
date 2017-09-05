@@ -1,7 +1,6 @@
 package org.usfirst.frc.team1322.robot.subsystems;
 
 import org.usfirst.frc.team1322.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Solenoid;
@@ -16,7 +15,6 @@ public class GearSubsystem extends Subsystem {
 	Timer wait = new Timer();
    
     public GearSubsystem(){
-    	c.setClosedLoopControl(true);
     	
     }
         
@@ -30,14 +28,14 @@ public class GearSubsystem extends Subsystem {
 		SmartDashboard.putBoolean("GearPistonsExtended", false);
     }
     
-    public void run(){
+    public void run(){/*
     	wait.reset();
     	wait.start();
     	eject();
     	wait.start();
     	if(wait.get() > 1){
     		close();
-    	}
+    	}*/
     }
     
     public void initDefaultCommand() {

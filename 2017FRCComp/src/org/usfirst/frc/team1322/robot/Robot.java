@@ -59,6 +59,7 @@ public class Robot extends IterativeRobot {
 		
 		CameraServer cam1 = CameraServer.getInstance();
 		cam1.startAutomaticCapture(0).setResolution(640, 480);
+		cam1.startAutomaticCapture(1).setResolution(640, 480);
 		gyro.calibrate();
 		
 		//UsbCamera gearCam = new UsbCamera("cam0", 0);

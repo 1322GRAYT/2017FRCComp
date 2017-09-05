@@ -10,10 +10,12 @@ public class RobotMap {
 	
 	/********CANs********/
 		//Drives
-	public static final int CAN_D_FL = 1; //14 On Robot
-	public static final int CAN_D_RL = 2; //15 On Robot
+	public static final int CAN_D_FL = 8; //14 On Robot
+	public static final int CAN_D_RL = 15; //15 On Robot
 	public static final int CAN_D_FR = 3; //1 On Robot
 	public static final int CAN_D_RR = 4; //0 On Robot
+	public static final int CAN_D_TR = 1; //0 On Robot
+	public static final int CAN_D_TL = 2; //0 On Robot
 		//Shooter
 	public static final int CAN_SHOOT_2 = 6; //9 On Robot
 	public static final int CAN_SHT = 5; //10 On Robot
